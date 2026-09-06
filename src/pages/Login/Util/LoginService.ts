@@ -36,7 +36,7 @@ export default function LoginService(url: string) {
   }
 
   async function csrfCookie(): Promise<void> {
-    await api.get('sanctum/csrf-cookie');
+    await api.get('http://localhost/sanctum/csrf-cookie');
   }
 
   return {

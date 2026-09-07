@@ -16,9 +16,11 @@ declare module 'vue' {
 // good idea to move this instance creation inside of the
 // "export default () => {}" function below (which runs individually
 // for each client)
-const api = axios.create({ baseURL: process.env.API_URL as string });
-api.defaults.withCredentials = true;
-api.defaults.withXSRFToken = true;
+const api = axios.create({
+  baseURL: process.env.API_URL as string,
+  withCredentials: true,
+  withXSRFToken: true,
+});
 
 export default boot(({ app }) => {
   const useAuthStore = authStore();
@@ -55,15 +57,6 @@ export default boot(({ app }) => {
       return Promise.reject(request);
     }
   );
-
-  api.interceptors.request.use((config) => {
-    const token = useAuthStore.user?.token;
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-
-    return config;
-  });
 
   // for use inside Vue files (Options API) through this.$axios and this.$api
 

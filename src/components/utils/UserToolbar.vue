@@ -146,7 +146,7 @@ const currentLang = ref<Lang>(locale.value as Lang);
 async function logout(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await fetchLogout();
+    await fetchLogout(t('logoutFeitoComSucesso'));
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
   } finally {

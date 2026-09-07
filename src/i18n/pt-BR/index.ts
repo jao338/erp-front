@@ -118,4 +118,5 @@ export default {
   precoUnitario: 'Preço unitário',
   excluidoSucesso: 'Excluido com Sucesso',
   lucro: 'Lucro',
+  logoutFeitoComSucesso: 'Desconectado com sucesso!',
 };

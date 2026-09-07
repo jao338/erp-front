@@ -113,4 +113,5 @@ export default {
   precoUnitario: 'Unit Price',
   excluidoSucesso: 'Deleted Successfully',
   lucro: 'Profit',
+  logoutFeitoComSucesso: 'Successfully disconnected!!',
 };

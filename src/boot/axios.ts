@@ -50,7 +50,7 @@ export default boot(({ app }) => {
 
       if (request.response && [401, 419].includes(request.response.status)) {
         useAuthStore.setUserData(null);
-        // window.location.href = '/login';
+        window.location.href = '/login';
       }
 
       // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors

@@ -7,7 +7,8 @@ const routes: RouteRecordRaw[] = [
     meta: {
       breadCrumbLink: true,
       breadCrumbIcon: 'home',
-      breadCrumbLabel: 'paginaInicial'
+      breadCrumbLabel: 'paginaInicial',
+      requiresAuth: true
     },
     children: [
       {

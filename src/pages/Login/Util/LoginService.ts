@@ -26,12 +26,13 @@ export default function LoginService(url: string) {
     await router.push({ name: 'home' });
   }
 
-  async function fetchLogout(): Promise<void> {
+  async function fetchLogout(message: string): Promise<void> {
     try {
-      await create(url);
+      await create(url,false);
+      successMessage(message);
     } finally {
       auth.setUserData(null);
-      window.location.href = '/login';
+      await router.push({ name: 'home' });
     }
   }
 

@@ -119,4 +119,8 @@ export default {
   excluidoSucesso: 'Excluido com Sucesso',
   lucro: 'Lucro',
   logoutFeitoComSucesso: 'Desconectado com sucesso!',
+  confirmeSuaSenha: 'Confirme sua senha',
+  registre: 'Registre-se',
+  registrar: 'Registrar',
+  registroFeitoSucesso: 'Registrado com sucesso! Faça o primeiro acesso antes de continuar!',
 };

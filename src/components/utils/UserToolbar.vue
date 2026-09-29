@@ -119,7 +119,7 @@ import { ref, watch } from 'vue';
 
 import InputSelect from 'components/inputs/InputSelect.vue';
 
-import LoginService from 'pages/Login/Util/LoginService';
+import AuthService from 'pages/Auth/Util/AuthService';
 import useHelpers from 'src/composables/useHelpers';
 import { useI18n } from 'vue-i18n';
 import { Lang } from 'src/util/Enums';
@@ -129,7 +129,7 @@ const useAuthStore = authStore();
 
 const { darkMode } = storeToRefs(useSystemStore);
 const { user } = storeToRefs(useAuthStore);
-const { fetchLogout } = LoginService('/logout');
+const { fetchLogout } = AuthService('/logout');
 const { toggleLoading } = useHelpers();
 
 const { locale, t } = useI18n();

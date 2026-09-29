@@ -22,7 +22,7 @@ export type DirectionType       = 'left' | 'right' | 'center' | 'bottom' | 'top'
 export type GsapTarget          = gsap.TweenTarget;
 
 export interface User {
-  token: string;
+  token?: string;
   email: string;
   nome: string;
   uuid: string;

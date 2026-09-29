@@ -1,20 +1,21 @@
 import useApi from 'src/composables/useApi';
+import useNotify from 'src/composables/useNotify';
 
 import { api } from 'boot/axios';
 import { authStore } from 'stores/auth';
 import { useRouter } from 'vue-router';
 
-import { type AuthForm } from 'pages/Login/Util/LoginInterface';
+import type { LoginForm, RegisterForm } from 'pages/Auth/Util/AuthInterface';
 import { type User } from 'src/util/Interface';
-import useNotify from 'src/composables/useNotify';
 
-export default function LoginService(url: string) {
-  const { index, create, update, destroy } = useApi(url);
-  const { successMessage } = useNotify()
+export default function AuthService(url: string) {
+  const { create }         = useApi(url);
+  const { successMessage } = useNotify();
+
   const router = useRouter();
-  const auth = authStore();
+  const auth   = authStore();
 
-  async function fetchLogin(form: AuthForm, message: string): Promise<void> {
+  async function fetchLogin(form: LoginForm, message: string): Promise<void> {
     await csrfCookie();
 
     const { data } = await create<User>(form, false);
@@ -24,6 +25,15 @@ export default function LoginService(url: string) {
     auth.setUserData(data);
 
     await router.push({ name: 'home' });
+  }
+  async function fetchRegister(form: RegisterForm, message: string): Promise<void> {
+    await csrfCookie();
+
+    await create<User>(form, false);
+
+    successMessage(message);
+
+    await router.push({ name: 'login' });
   }
 
   async function fetchLogout(message: string): Promise<void> {
@@ -43,9 +53,6 @@ export default function LoginService(url: string) {
   return {
     fetchLogin,
     fetchLogout,
-    create,
-    index,
-    update,
-    destroy,
+    fetchRegister
   };
 }

@@ -2,7 +2,7 @@
   <q-layout>
     <q-page-container>
       <q-page class="flex flex-center column bg-grey-3">
-        <q-card class="card-login q-pa-sm">
+        <q-card class="card-register q-pa-sm">
           <q-card-section class="text-center q-ma-lg">
             <LogoLogin />
           </q-card-section>
@@ -12,12 +12,12 @@
               class="q-ma-none text-h5 text-weight-bold text-center"
               style="color: #076bb3"
             >
-              {{ t('login') }}
+              {{ t('registre') }}
             </p>
           </q-card-section>
 
           <q-card-section>
-            <q-form ref="formRef" @submit.prevent="login" class="q-gutter-lg">
+            <q-form ref="formRef" @submit.prevent="register" class="q-gutter-lg">
               <InputText
                 v-model="form.email"
                 data-cy="text-email"
@@ -27,21 +27,40 @@
                 :request-errors="{ errors: errors, field: 'email'} "
               />
 
+              <InputText
+                v-model="form.name"
+                data-cy="text-name"
+                has-request-errors
+                :label="$t('nome')"
+                :rules="[validateRequiredField]"
+                :request-errors="{ errors: errors, field: 'name'} "
+              />
+
               <InputPassword
                 data-cy="text-password"
                 v-model="form.password"
+                has-request-errors
                 :label="$t('senha')"
                 :rules="[validateRequiredField]"
+                :request-errors="{ errors: errors, field: 'password'} "
+              />
+
+              <InputPassword
+                data-cy="text-confirm_password"
+                v-model="form.confirm_password"
+                :label="$t('confirmeSuaSenha')"
+                :rules="[validateRequiredField]"
+                :request-errors="{ errors: errors, field: 'confirm_password'} "
               />
 
               <q-card-actions class="q-pa-none">
                 <ButtonGeneric
                   type="submit"
                   color="primary"
-                  icon="login"
-                  data-cy="btn-login"
-                  :loading="loadingLogin"
-                  :label="$t('login')"
+                  icon="register"
+                  data-cy="btn-register"
+                  :loading="loadingRegister"
+                  :label="$t('registrar')"
                   class="full-width button-rounded"
                 />
               </q-card-actions>
@@ -59,55 +78,57 @@ import { ref } from 'vue';
 import { useMeta } from 'quasar';
 import { useI18n } from 'vue-i18n';
 
-import { type AuthForm } from './Util/LoginInterface';
+import { type RegisterForm } from '../Util/AuthInterface';
 import { type RequestErrors } from 'src/util/Interface';
 
 import useValidations from 'src/composables/useValidations';
 import useHelpers from 'src/composables/useHelpers';
-import useLoginService from './Util/LoginService';
+import useAuthService from '../Util/AuthService';
 
-import InputText from 'src/components/inputs/InputText.vue';
-import InputPassword from 'src/components/inputs/InputPassword.vue';
-import ButtonGeneric from 'src/components/buttons/ButtonGeneric.vue';
-import LogoLogin from 'src/components/utils/LogoLogin.vue';
+import InputText from 'components/inputs/InputText.vue';
+import InputPassword from 'components/inputs/InputPassword.vue';
+import ButtonGeneric from 'components/buttons/ButtonGeneric.vue';
+import LogoLogin from 'components/utils/LogoLogin.vue';
 
 const { validateRequiredField, validateEmail } = useValidations();
 const { toggleLoading } = useHelpers();
-const { fetchLogin } = useLoginService('/login');
+const { fetchRegister } = useAuthService('/register');
 const { t } = useI18n();
 
-const errors = ref<RequestErrors>({});
-const loadingLogin = ref<boolean>(false);
-const formRef = ref<HTMLFormElement | null>(null);
-const form = ref<AuthForm>({
+const errors          = ref<RequestErrors>({});
+const loadingRegister = ref<boolean>(false);
+const formRef         = ref<HTMLFormElement | null>(null);
+const form            = ref<RegisterForm>({
   email: '',
+  name: '',
   password: '',
+  confirm_password: '',
 });
 
-async function login(): Promise<void> {
-  toggleLoading(loadingLogin);
+async function register(): Promise<void> {
+  toggleLoading(loadingRegister);
   try {
-    await fetchLogin(form.value, t('loginFeitoSucesso'));
+    await fetchRegister(form.value, t('registroFeitoSucesso'));
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
   } finally {
-    toggleLoading(loadingLogin);
+    toggleLoading(loadingRegister);
   }
 }
 
 useMeta(() => {
   return {
-    title: t('login'),
+    title: t('registre'),
     meta: {
       description: {
         name: 'description',
-        content: t('login'),
+        content: t('registre'),
       },
     },
   };
 });
 
 defineOptions({
-  name: 'LoginPage',
+  name: 'RegisterPage',
 });
 </script>

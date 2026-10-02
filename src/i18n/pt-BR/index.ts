@@ -122,5 +122,6 @@ export default {
   confirmeSuaSenha: 'Confirme sua senha',
   registre: 'Registre-se',
   registrar: 'Registrar',
+  primeiroAcesso: 'Primeiro acesso',
   registroFeitoSucesso: 'Registrado com sucesso! Faça o primeiro acesso antes de continuar!',
 };

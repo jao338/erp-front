@@ -34,7 +34,7 @@
                 :rules="[validateRequiredField]"
               />
 
-              <q-card-actions class="q-gutter-md" style="border: 1px solid red;">
+              <q-card-actions class="q-pa-none">
                 <ButtonGeneric
                   type="submit"
                   color="primary"
@@ -50,9 +50,14 @@
                   data-cy="btn-register"
                   :label="$t('register')"
                   outline
-                  class="full-width button-rounded outline"
+                  class="full-width button-rounded outline q-mt-md"
                   @click="router.push({ name: 'register' })"
                 />
+              </q-card-actions>
+
+              <q-card-actions class="flex justify-center q-pa-none">
+                <RouterLink class="no-decoration text-primary text-caption" :to="{ name: 'first-access' }">{{ t('primeiroAcesso') }}</RouterLink>
+<!--                <RouterLink :to="{ name: 'forgot-pass' }">{{ t('primeiroAcesso') }}</RouterLink>-->
               </q-card-actions>
 
             </q-form>

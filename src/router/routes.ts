@@ -164,6 +164,12 @@ const routes: RouteRecordRaw[] = [
     name: 'register',
     component: () => import('pages/Auth/Register/RegisterPage.vue'),
   },
+
+  {
+    path: '/first-access',
+    name: 'first-access',
+    component: () => import('pages/Auth/Register/RegisterPage.vue'),
+  },
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/NotFound/NotFoundPage.vue'),

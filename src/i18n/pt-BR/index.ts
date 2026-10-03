@@ -123,5 +123,10 @@ export default {
   registre: 'Registre-se',
   registrar: 'Registrar',
   primeiroAcesso: 'Primeiro acesso',
+  loginTitulo: 'Acesse sua conta',
+  loginSubtitulo: 'Sistema ERP profissional',
+  loginDestaqueSeguranca: 'Acesso seguro',
+  loginDestaqueGestao: 'Gestão eficiente',
+  loginDestaqueInterface: 'Interface intuitiva',
   registroFeitoSucesso: 'Registrado com sucesso! Faça o primeiro acesso antes de continuar!',
 };

@@ -114,4 +114,11 @@ export default {
   excluidoSucesso: 'Deleted Successfully',
   lucro: 'Profit',
   logoutFeitoComSucesso: 'Successfully disconnected!!',
+  registrar: 'Register',
+  primeiroAcesso: 'First access',
+  loginTitulo: 'Access your account',
+  loginSubtitulo: 'Professional ERP system',
+  loginDestaqueSeguranca: 'Secure access',
+  loginDestaqueGestao: 'Efficient management',
+  loginDestaqueInterface: 'Intuitive interface',
 };

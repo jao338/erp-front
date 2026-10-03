@@ -74,7 +74,7 @@ import { useMeta } from 'quasar';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
-import { type LoginForm } from 'pages/Auth/Util/AuthInterface';
+import { type LoginBody } from 'pages/Auth/Util/AuthInterface';
 import { type RequestErrors } from 'src/util/Interface';
 
 import useValidations from 'src/composables/useValidations';
@@ -95,7 +95,7 @@ const router       = useRouter();
 const errors       = ref<RequestErrors>({});
 const loadingLogin = ref<boolean>(false);
 const formRef      = ref<HTMLFormElement | null>(null);
-const form         = ref<LoginForm>({
+const form         = ref<LoginBody>({
   email: '',
   password: '',
 });

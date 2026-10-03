@@ -21,7 +21,7 @@ export type Colors              =      'primary'    |
 export type DirectionType       = 'left' | 'right' | 'center' | 'bottom' | 'top';
 export type GsapTarget          = gsap.TweenTarget;
 
-export interface User {
+export interface UserResponse {
   token?: string;
   email: string;
   nome: string;
@@ -214,4 +214,8 @@ export interface ScatterGraphicData {
   xMax: number;
   yMin: number;
   yMax: number;
+}
+
+export interface MessageFeedbackResponse {
+  message: string;
 }

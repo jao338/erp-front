@@ -3,37 +3,40 @@ import useNotify from 'src/composables/useNotify';
 
 import { api } from 'boot/axios';
 import { authStore } from 'stores/auth';
-import { useRouter } from 'vue-router';
 
-import type { LoginForm, RegisterForm } from 'pages/Auth/Util/AuthInterface';
-import { type User } from 'src/util/Interface';
+import type { FirstAccessBody, LoginBody, RegisterBody } from 'pages/Auth/Util/AuthInterface';
+import type { MessageFeedbackResponse, UserResponse } from 'src/util/Interface';
 
 export default function AuthService(url: string) {
   const { create }         = useApi(url);
   const { successMessage } = useNotify();
 
-  const router = useRouter();
   const auth   = authStore();
 
-  async function fetchLogin(form: LoginForm, message: string): Promise<void> {
+  async function fetchLogin(body: LoginBody, message: string): Promise<void> {
     await csrfCookie();
 
-    const { data } = await create<User>(form, false);
+    const { data } = await create<UserResponse>(body, false);
 
     successMessage(message);
 
     auth.setUserData(data);
 
-    await router.push({ name: 'home' });
   }
-  async function fetchRegister(form: RegisterForm, message: string): Promise<void> {
+
+  async function fetchSendFirstAccess(body: FirstAccessBody): Promise<void> {
     await csrfCookie();
 
-    await create<User>(form, false);
+    const { data } = await create<MessageFeedbackResponse>(body, false);
 
-    successMessage(message);
+    successMessage(data.message);
+  }
+  async function fetchRegister(body: RegisterBody): Promise<void> {
+    await csrfCookie();
 
-    await router.push({ name: 'login' });
+    const { data } = await create<MessageFeedbackResponse>(body, false);
+
+    successMessage(data.message);
   }
 
   async function fetchLogout(message: string): Promise<void> {
@@ -42,7 +45,6 @@ export default function AuthService(url: string) {
       successMessage(message);
     } finally {
       auth.setUserData(null);
-      await router.push({ name: 'home' });
     }
   }
 
@@ -53,6 +55,7 @@ export default function AuthService(url: string) {
   return {
     fetchLogin,
     fetchLogout,
-    fetchRegister
+    fetchRegister,
+    fetchSendFirstAccess
   };
 }

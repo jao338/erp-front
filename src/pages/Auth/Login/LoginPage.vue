@@ -104,9 +104,14 @@ async function login(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
     await fetchLogin(form.value, t('loginFeitoSucesso'));
+
+    setTimeout(() => {
+      void router.push({ name: 'home' });
+    }, 2000);
+
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
-  } finally {
+  }finally {
     toggleLoading(loadingLogin);
   }
 }

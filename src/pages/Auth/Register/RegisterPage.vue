@@ -124,14 +124,15 @@ async function register(): Promise<void> {
   toggleLoading(loadingRegister);
   try {
     await fetchRegister(form.value);
-  } catch (error: any) {
-    errors.value = error.response?.data.errors ?? {};
-  } finally {
-    toggleLoading(loadingRegister);
 
     setTimeout(() => {
-      console.log('Redirecting to login');
+      void router.push({ name: 'login' });
     }, 2000);
+
+  } catch (error: any) {
+    errors.value = error.response?.data.errors ?? {};
+  }finally {
+    toggleLoading(loadingRegister);
   }
 }
 

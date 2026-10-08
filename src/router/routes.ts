@@ -170,6 +170,13 @@ const routes: RouteRecordRaw[] = [
     name: 'first-access',
     component: () => import('pages/Auth/FirstAccess/FirstAccessPage.vue'),
   },
+
+  {
+    path: '/verify-code-access',
+    name: 'verify-code-access',
+    component: () => import('pages/Auth/VerifyCodeAccess/VerifyCodeAccessPage.vue'),
+  },
+
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/NotFound/NotFoundPage.vue'),

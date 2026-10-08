@@ -21,7 +21,6 @@ export default function AuthService(url: string) {
     successMessage(message);
 
     auth.setUserData(data);
-
   }
 
   async function fetchSendFirstAccess(body: FirstAccessBody): Promise<void> {

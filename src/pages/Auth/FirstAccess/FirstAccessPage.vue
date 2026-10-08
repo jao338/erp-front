@@ -94,14 +94,12 @@ async function firstAccess(): Promise<void> {
   toggleLoading(loadingSend);
   try {
     await fetchSendFirstAccess(form.value);
+    await router.push({ name: 'verify-code-access' });
+
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
-  } finally {
+  }finally {
     toggleLoading(loadingSend);
-
-    setTimeout(() => {
-      console.log('Redirecting to verify access...');
-    }, 2000);
   }
 }
 

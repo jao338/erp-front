@@ -26,7 +26,7 @@ export default function useApi(url = '') {
 
     if (returnSucessMessage) successMessage(t('criadoSucesso'));
 
-    return { data: data?.data as T };
+    return { data: (data?.data ?? data) as T };
   }
 
   async function update(

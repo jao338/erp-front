@@ -113,6 +113,7 @@
 import { systemStore } from 'stores/system';
 import { authStore } from 'stores/auth';
 import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 
 import { type OptionsSelect, type RequestErrors } from 'src/util/Interface';
 import { ref, watch } from 'vue';
@@ -129,7 +130,7 @@ const useAuthStore = authStore();
 
 const { darkMode } = storeToRefs(useSystemStore);
 const { user } = storeToRefs(useAuthStore);
-const { fetchLogout } = AuthService('/logout');
+const { requestLogout } = AuthService('/logout');
 const { toggleLoading } = useHelpers();
 
 const { locale, t } = useI18n();
@@ -142,11 +143,16 @@ const languages = ref<OptionsSelect[]>([
 ]);
 
 const currentLang = ref<Lang>(locale.value as Lang);
+const router      = useRouter();
 
 async function logout(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await fetchLogout(t('logoutFeitoComSucesso'));
+    await requestLogout(t('logoutFeitoComSucesso'));
+
+    setTimeout(() => {
+      void router.push({ name: 'login' })
+    }, 1000);
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
   } finally {

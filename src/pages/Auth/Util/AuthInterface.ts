@@ -7,7 +7,12 @@ export interface FirstAccessBody  {
   email: string;
 }
 
+
 export interface RegisterBody extends LoginBody {
   name: string;
   confirm_password: string;
+}
+
+export interface VerifyCodeAccessBody extends FirstAccessBody {
+  code: string;
 }

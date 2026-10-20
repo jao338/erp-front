@@ -88,7 +88,7 @@ import LogoLogin from 'components/utils/LogoLogin.vue';
 
 const { validateRequiredField, validateEmail } = useValidations();
 const { toggleLoading } = useHelpers();
-const { fetchLogin } = useLoginService('/login');
+const { requestLogin } = useLoginService('/login');
 const { t } = useI18n();
 
 const router       = useRouter();
@@ -103,7 +103,7 @@ const form         = ref<LoginBody>({
 async function login(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await fetchLogin(form.value, t('loginFeitoSucesso'));
+    await requestLogin(form.value, t('loginFeitoSucesso'));
 
     setTimeout(() => {
       void router.push({ name: 'home' });

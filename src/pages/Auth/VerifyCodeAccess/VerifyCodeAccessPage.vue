@@ -17,35 +17,52 @@
           </q-card-section>
 
           <q-card-section>
-            <q-form ref="formRef" @submit.prevent="firstAccess" class="q-gutter-lg">
-              <InputText
-                v-model="form.email"
-                data-cy="text-email"
-                has-request-errors
-                :label="$t('email')"
-                :rules="[validateRequiredField, validateEmail]"
-                :request-errors="{ errors: errors, field: 'email'} "
-              />
+              <q-form
+                ref="formRef"
+                class="q-gutter-lg"
+                @submit.prevent="verifyCode"
+              >
+                <p class="text-center">
+                  {{ t('digiteOCodigoPorEmail') }}
+                </p>
 
-              <q-card-actions class="q-gutter-md q-pa-none">
-                <ButtonGeneric
-                  type="submit"
-                  color="primary"
-                  icon="send"
-                  data-cy="btn-send"
-                  :loading="loadingSend"
-                  :label="$t('enviar')"
-                  class="full-width button-rounded"
+                <InputOtp
+                  v-model="form.code"
+                  :input-length="5"
                 />
-                <ButtonGeneric
-                  color="primary"
-                  data-cy="btn-back"
-                  :label="$t('voltar')"
-                  outline
-                  class="full-width button-rounded"
-                  @click="redirectBack"
-                />
-              </q-card-actions>
+
+                <div
+                  v-if="validationMessages.length"
+                  class="text-negative text-center"
+                  role="alert"
+                >
+                  <div
+                    v-for="(message, index) in validationMessages"
+                    :key="index"
+                  >
+                    {{ message }}
+                  </div>
+                </div>
+
+                <q-card-actions class="q-gutter-md q-pa-none">
+                  <ButtonGeneric
+                    type="submit"
+                    color="primary"
+                    data-cy="btn-verify-code"
+                    :loading="loadingSend"
+                    :label="t('enviar')"
+                    class="full-width button-rounded"
+                  />
+
+                  <ButtonGeneric
+                    color="primary"
+                    outline
+                    data-cy="btn-back"
+                    :label="t('voltar')"
+                    class="full-width button-rounded"
+                    @click="redirectBack"
+                  />
+                </q-card-actions>
 
             </q-form>
           </q-card-section>
@@ -56,54 +73,62 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useMeta } from 'quasar';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import { systemStore } from 'stores/system';
 
-import { type FirstAccessBody } from 'pages/Auth/Util/AuthInterface';
+import { type VerifyCodeAccessBody } from 'pages/Auth/Util/AuthInterface';
 import { type RequestErrors } from 'src/util/Interface';
+import { storeToRefs } from 'pinia';
 
-import useValidations from 'src/composables/useValidations';
 import useHelpers from 'src/composables/useHelpers';
 import useAuthService from 'pages/Auth/Util/AuthService';
 
-import InputText from 'components/inputs/InputText.vue';
 import ButtonGeneric from 'components/buttons/ButtonGeneric.vue';
+import InputOtp from 'components/inputs/InputOtp.vue';
 import LogoLogin from 'components/utils/LogoLogin.vue';
 
-const { validateRequiredField, validateEmail } = useValidations();
-const { toggleLoading }                        = useHelpers();
+const { toggleLoading, getRequestErrors }      = useHelpers();
 
-const { fetchSendFirstAccess }                 = useAuthService('/first-access');
+const { requestVerifyFirstAccessCode }         = useAuthService('/verify-code-access');
 const { t }                                    = useI18n();
 
+
+const store        = systemStore();
 const router       = useRouter();
 
-const errors       = ref<RequestErrors>({});
-const loadingSend  = ref<boolean>(false);
-const formRef      = ref<HTMLFormElement | null>(null);
-const form         = ref<FirstAccessBody>({
-  email: '',
+const { temporaryEmail } = storeToRefs(store);
+
+const errors             = ref<RequestErrors>({});
+const loadingSend        = ref<boolean>(false);
+const formRef            = ref<HTMLFormElement | null>(null);
+const form               = ref<VerifyCodeAccessBody>({
+  code: '',
+  email: temporaryEmail.value
 });
+
+const validationMessages = computed(() =>
+  Object.values(errors.value).flat()
+);
+
 function redirectBack(): void {
   router.go(-1)
 }
 
-async function firstAccess(): Promise<void> {
+async function verifyCode(): Promise<void> {
+  errors.value = {}
   toggleLoading(loadingSend);
   try {
-    await fetchSendFirstAccess(form.value);
-
-    toggleLoading(loadingSend);
+    await requestVerifyFirstAccessCode(form.value);
 
     setTimeout(() => {
-      void router.push({ name: 'verify-code-access' });
+      void router.push({ name: 'login' });
+    }, 2000)
 
-    }, 2000);
-
-  } catch (error: any) {
-    errors.value = error.response?.data.errors ?? {};
+  } catch (error: unknown) {
+    errors.value = getRequestErrors(error);
   } finally {
     toggleLoading(loadingSend);
   }
@@ -111,11 +136,11 @@ async function firstAccess(): Promise<void> {
 
 useMeta(() => {
   return {
-    title: t('primeiroAcesso'),
+    title: t('verificarCodigoAcesso'),
     meta: {
       description: {
         name: 'description',
-        content: t('primeiroAcesso'),
+        content: t('verificarCodigoAcesso'),
       },
     },
   };

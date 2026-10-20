@@ -33,7 +33,7 @@
                   color="primary"
                   icon="send"
                   data-cy="btn-send"
-                  :loading="loadingSend"
+                  :loading="loadingRequest"
                   :label="$t('enviar')"
                   class="full-width button-rounded"
                 />
@@ -60,6 +60,7 @@ import { ref } from 'vue';
 import { useMeta } from 'quasar';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
+import { systemStore } from "stores/system";
 
 import { type FirstAccessBody } from 'pages/Auth/Util/AuthInterface';
 import { type RequestErrors } from 'src/util/Interface';
@@ -72,18 +73,20 @@ import InputText from 'components/inputs/InputText.vue';
 import ButtonGeneric from 'components/buttons/ButtonGeneric.vue';
 import LogoLogin from 'components/utils/LogoLogin.vue';
 
-const { validateRequiredField, validateEmail } = useValidations();
-const { toggleLoading }                        = useHelpers();
 
-const { fetchSendFirstAccess }                 = useAuthService('/first-access');
+const { validateRequiredField, validateEmail } = useValidations();
+const { toggleLoading, getRequestErrors }      = useHelpers();
+
+const { requestFirstAccess }                   = useAuthService('/first-access');
 const { t }                                    = useI18n();
 
 const router       = useRouter();
+const store        = systemStore();
 
-const errors       = ref<RequestErrors>({});
-const loadingSend  = ref<boolean>(false);
-const formRef      = ref<HTMLFormElement | null>(null);
-const form         = ref<FirstAccessBody>({
+const errors          = ref<RequestErrors>({});
+const loadingRequest  = ref<boolean>(false);
+const formRef         = ref<HTMLFormElement | null>(null);
+const form            = ref<FirstAccessBody>({
   email: '',
 });
 function redirectBack(): void {
@@ -91,15 +94,20 @@ function redirectBack(): void {
 }
 
 async function firstAccess(): Promise<void> {
-  toggleLoading(loadingSend);
+  toggleLoading(loadingRequest);
   try {
-    await fetchSendFirstAccess(form.value);
-    await router.push({ name: 'verify-code-access' });
+    await requestFirstAccess(form.value);
 
-  } catch (error: any) {
-    errors.value = error.response?.data.errors ?? {};
-  }finally {
-    toggleLoading(loadingSend);
+    store.setTemporaryEmail(form.value.email);
+
+    setTimeout(() => {
+      void router.push({ name: 'verify-code-access' });
+    }, 2000)
+
+  } catch (error: unknown) {
+    errors.value = getRequestErrors(error);
+  } finally {
+    toggleLoading(loadingRequest);
   }
 }
 

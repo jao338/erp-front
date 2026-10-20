@@ -100,8 +100,9 @@ import ButtonGeneric from 'components/buttons/ButtonGeneric.vue';
 import LogoLogin from 'components/utils/LogoLogin.vue';
 
 const { validateRequiredField, validateEmail } = useValidations();
-const { toggleLoading } = useHelpers();
-const { fetchRegister } = useAuthService('/register');
+const { toggleLoading }                        = useHelpers();
+const { requestRegister }                      = useAuthService('/register');
+
 const { t } = useI18n();
 
 const router       = useRouter();
@@ -123,7 +124,7 @@ function redirectBack(): void {
 async function register(): Promise<void> {
   toggleLoading(loadingRegister);
   try {
-    await fetchRegister(form.value);
+    await requestRegister(form.value);
 
     setTimeout(() => {
       void router.push({ name: 'login' });

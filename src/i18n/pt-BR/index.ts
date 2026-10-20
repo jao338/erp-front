@@ -129,4 +129,6 @@ export default {
   loginDestaqueGestao: 'Gestão eficiente',
   loginDestaqueInterface: 'Interface intuitiva',
   registroFeitoSucesso: 'Registrado com sucesso! Faça o primeiro acesso antes de continuar!',
+  verificarCodigoAcesso: 'Verificar código de acesso',
+  digiteOCodigoPorEmail: 'Digite o código de 5 dígitos enviado para seu e-mail.',
 };

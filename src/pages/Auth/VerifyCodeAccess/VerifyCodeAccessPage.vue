@@ -123,9 +123,7 @@ async function verifyCode(): Promise<void> {
   try {
     await requestVerifyFirstAccessCode(form.value);
 
-    setTimeout(() => {
-      void router.push({ name: 'login' });
-    }, 2000)
+    void router.push({ name: 'login' });
 
   } catch (error: unknown) {
     errors.value = getRequestErrors(error);

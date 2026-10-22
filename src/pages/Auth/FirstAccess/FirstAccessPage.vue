@@ -100,9 +100,7 @@ async function firstAccess(): Promise<void> {
 
     store.setTemporaryEmail(form.value.email);
 
-    setTimeout(() => {
-      void router.push({ name: 'verify-code-access' });
-    }, 2000)
+    void router.push({ name: 'verify-code-access' });
 
   } catch (error: unknown) {
     errors.value = getRequestErrors(error);

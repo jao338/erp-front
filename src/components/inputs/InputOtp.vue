@@ -2,30 +2,45 @@
   <v-otp-input
     input-classes="otp-input"
     separator=""
-    :num-inputs="inputLength"
+    :num-inputs="inputLength ?? 6"
+    :value="modelValue"
     :should-auto-focus="true"
     input-type="number"
-    :conditionalClass="[]"
+    :conditional-class="[]"
     :placeholder="[]"
+    @on-change="updateValue"
+    @on-complete="updateValue"
   />
 </template>
 
 <script setup lang="ts">
 import VOtpInput from 'vue3-otp-input';
 
-defineProps({
-  inputLength: {
-    type: Number,
-    default: 6,
-  },
-})
+withDefaults(
+  defineProps<{
+    modelValue: string;
+    inputLength?: number;
+  }>(),
+  {
+    modelValue: '',
+    inputLength: 6,
+  }
+);
+
+const emit = defineEmits<{
+  (event: 'update:modelValue', value: string): void;
+}>();
+
+function updateValue(value: string): void {
+  emit('update:modelValue', value);
+}
 </script>
 
 <style>
 .otp-input {
-  background-color: var(--q-primary);
-  color: var(--q-secondary);
-  border: 2px solid var(--q-secondary);
+  background-color: white;
+  color: var(--q-primary);
+  border: 2px solid var(--q-primary);
   border-radius: 16px;
   width: 60px;
   height: 70px;
@@ -38,7 +53,7 @@ defineProps({
 
 .otp-input:focus {
   box-shadow: 0;
-  border: 3px solid var(--q-accent);
+  border: 3px solid var(--q-secondary);
   outline: 0;
 }
 

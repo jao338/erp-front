@@ -44,6 +44,20 @@
                   :label="$t('login')"
                   class="full-width button-rounded"
                 />
+                <ButtonGeneric
+                  color="primary"
+                  icon="login"
+                  data-cy="btn-register"
+                  :label="$t('register')"
+                  outline
+                  class="full-width button-rounded outline q-mt-md"
+                  @click="router.push({ name: 'register' })"
+                />
+              </q-card-actions>
+
+              <q-card-actions class="flex justify-center q-pa-none">
+                <RouterLink class="no-decoration text-primary text-caption" :to="{ name: 'first-access' }">{{ t('primeiroAcesso') }}</RouterLink>
+<!--                <RouterLink :to="{ name: 'forgot-pass' }">{{ t('primeiroAcesso') }}</RouterLink>-->
               </q-card-actions>
 
             </q-form>
@@ -58,28 +72,30 @@
 import { ref } from 'vue';
 import { useMeta } from 'quasar';
 import { useI18n } from 'vue-i18n';
+import { useRouter } from 'vue-router';
 
-import { type AuthForm } from './Util/LoginInterface';
+import { type LoginBody } from 'pages/Auth/Util/AuthInterface';
 import { type RequestErrors } from 'src/util/Interface';
 
 import useValidations from 'src/composables/useValidations';
 import useHelpers from 'src/composables/useHelpers';
-import useLoginService from './Util/LoginService';
+import useLoginService from 'pages/Auth/Util/AuthService';
 
-import InputText from 'src/components/inputs/InputText.vue';
-import InputPassword from 'src/components/inputs/InputPassword.vue';
-import ButtonGeneric from 'src/components/buttons/ButtonGeneric.vue';
-import LogoLogin from 'src/components/utils/LogoLogin.vue';
+import InputText from 'components/inputs/InputText.vue';
+import InputPassword from 'components/inputs/InputPassword.vue';
+import ButtonGeneric from 'components/buttons/ButtonGeneric.vue';
+import LogoLogin from 'components/utils/LogoLogin.vue';
 
 const { validateRequiredField, validateEmail } = useValidations();
 const { toggleLoading } = useHelpers();
-const { fetchLogin } = useLoginService('/login');
+const { requestLogin } = useLoginService('/login');
 const { t } = useI18n();
 
-const errors = ref<RequestErrors>({});
+const router       = useRouter();
+const errors       = ref<RequestErrors>({});
 const loadingLogin = ref<boolean>(false);
-const formRef = ref<HTMLFormElement | null>(null);
-const form = ref<AuthForm>({
+const formRef      = ref<HTMLFormElement | null>(null);
+const form         = ref<LoginBody>({
   email: '',
   password: '',
 });
@@ -87,10 +103,13 @@ const form = ref<AuthForm>({
 async function login(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await fetchLogin(form.value, t('loginFeitoSucesso'));
+    await requestLogin(form.value, t('loginFeitoSucesso'));
+
+    void router.push({ name: 'home' });
+
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
-  } finally {
+  }finally {
     toggleLoading(loadingLogin);
   }
 }

@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import axios from 'axios';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 import { type Ref, ref } from 'vue';
@@ -35,6 +36,20 @@ export default function useHelpers() {
       case 'right': return 'items-end';
       default: return 'items-start';
     }
+  }
+
+  function getRequestErrors(error: unknown): RequestErrors {
+    if (!axios.isAxiosError(error)) {
+      return {};
+    }
+
+    const requestErrors = error.response?.data?.errors;
+
+    if (!requestErrors || typeof requestErrors !== 'object') {
+      return {};
+    }
+
+    return requestErrors as RequestErrors;
   }
 
   function returnAbsoluteAlign(val: string): string {
@@ -294,6 +309,7 @@ export default function useHelpers() {
     transformToFormData,
     calculatePasswordStrength,
     getRandomColor,
+    getRequestErrors,
     linkDownload,
     generateCPF,
     applyMask,

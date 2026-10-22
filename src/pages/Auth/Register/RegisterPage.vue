@@ -126,9 +126,7 @@ async function register(): Promise<void> {
   try {
     await requestRegister(form.value);
 
-    setTimeout(() => {
-      void router.push({ name: 'login' });
-    }, 2000);
+    void router.push({ name: 'login' });
 
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};

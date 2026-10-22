@@ -105,9 +105,7 @@ async function login(): Promise<void> {
   try {
     await requestLogin(form.value, t('loginFeitoSucesso'));
 
-    setTimeout(() => {
-      void router.push({ name: 'home' });
-    }, 2000);
+    void router.push({ name: 'home' });
 
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};

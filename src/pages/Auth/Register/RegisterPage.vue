@@ -51,6 +51,7 @@
                 :label="$t('confirmeSuaSenha')"
                 :rules="[validateRequiredField]"
                 :request-errors="{ errors, field: 'confirm_password' }"
+                has-request-errors
                 class="col-12 col-md-6"
               />
 
@@ -100,7 +101,7 @@ import ButtonGeneric from 'components/buttons/ButtonGeneric.vue';
 import LogoLogin from 'components/utils/LogoLogin.vue';
 
 const { validateRequiredField, validateEmail } = useValidations();
-const { toggleLoading }                        = useHelpers();
+const { toggleLoading, getRequestErrors }      = useHelpers();
 const { requestRegister }                      = useAuthService('/register');
 
 const { t } = useI18n();
@@ -128,9 +129,9 @@ async function register(): Promise<void> {
 
     void router.push({ name: 'login' });
 
-  } catch (error: any) {
-    errors.value = error.response?.data.errors ?? {};
-  }finally {
+  } catch (error: unknown) {
+    errors.value = getRequestErrors(error);
+  } finally {
     toggleLoading(loadingRegister);
   }
 }

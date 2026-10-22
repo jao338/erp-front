@@ -148,11 +148,9 @@ const router      = useRouter();
 async function logout(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await requestLogout(t('logoutFeitoComSucesso'));
-
-    setTimeout(() => {
-      void router.push({ name: 'login' })
-    }, 1000);
+    await requestLogout(t('logoutFeitoComSucesso')).finally(() =>
+      void router.replace({ name: 'login' }),
+    );
   } catch (error: any) {
     errors.value = error.response?.data.errors ?? {};
   } finally {

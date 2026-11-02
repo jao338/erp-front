@@ -44,6 +44,11 @@ const linksList = computed<MenuItem[]>(() => [
     link: '/products',
   },
   {
+    title: t('supplier', 2),
+    icon: 'business',
+    link: '/suppliers',
+  },
+  {
     title: t('compra', 2) + '/' + t('venda', 2),
     icon: 'account_circle',
     subLinks: [

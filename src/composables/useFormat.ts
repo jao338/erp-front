@@ -30,6 +30,20 @@ export default function useFormat() {
     return ''
   }
 
+  function formatPhone(phone: string|undefined): string {
+    if (phone && phone.length === 12) {
+      return `(${phone.slice(0, 3)})${phone.slice(3, 8)}-${phone.slice(8, 12)}`;
+    }
+    return '';
+  }
+
+  function formatCPF(cpf: string|undefined): string {
+    if (cpf && cpf.length === 11) {
+      return `${cpf.slice(0, 3)}.${cpf.slice(3, 6)}.${cpf.slice(6, 9)}-${cpf.slice(9, 11)}`;
+    }
+    return '';
+  }
+
   function formatDate(element: string|undefined): string {
     if (element) {
       return dayjs(element, 'YYYY-MM-DD').format('DD/MM/YYYY');
@@ -50,6 +64,8 @@ export default function useFormat() {
     formatSizes,
     formatDate,
     formatCNPJ,
+    formatPhone,
+    formatCPF,
     formatCurrencyBR
   };
 }

@@ -133,4 +133,12 @@ export default {
   registroFeitoSucesso: 'Registrado com sucesso! Faça o primeiro acesso antes de continuar!',
   verificarCodigoAcesso: 'Verificar código de acesso',
   digiteOCodigoPorEmail: 'Digite o código de 5 dígitos enviado para seu e-mail.',
+  supplier: 'Fornecedor | Fornecedores',
+  supplierCaption: 'Nesta página você pode ver a lista de fornecedores, criar novos e gerenciar os existentes, incluindo a edição de informações e a exclusão de registros.',
+  tipo: 'Tipo',
+  telefone: 'Telefone',
+  individual: 'Pessoa física',
+  company: 'Pessoa jurídica',
+  cpf: 'CPF',
+  inFormatPhone: 'EX. (099)99999-9999',
 };

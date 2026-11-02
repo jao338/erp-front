@@ -2,7 +2,7 @@ export enum Mask {
   Cnpj = '##.###.###/####-##',
   Cpf = '###.###.###-##',
   TelefoneFixo = '(##) ####-####',
-  TelefoneMovel = '(##) #####-####',
+  TelefoneMovel = '(0##) #####-####',
   Cep = '##.###-###',
 }
 
@@ -37,4 +37,9 @@ export enum TextSizeType {
 export enum Lang {
   Portuguese = 'pt-BR',
   English = 'en-US',
+}
+
+export enum PersonType {
+  Individual = 1,
+  Company    = 2,
 }

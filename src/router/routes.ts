@@ -66,6 +66,49 @@ const routes: RouteRecordRaw[] = [
         ]
       },
       {
+        path: 'suppliers',
+        meta: {
+          requiresAuth: true,
+          breadCrumbLink: true,
+          breadCrumbIcon: 'business',
+          breadCrumbLabel: 'supplier',
+        },
+        redirect: { name: 'supplier' },
+        component: () => import('pages/Supplier/SupplierLayout.vue'),
+        children: [
+          {
+            path: '',
+            name: 'supplier',
+            meta: {
+              breadCrumbLink: true,
+              breadCrumbIcon: 'business',
+              breadCrumbLabel: 'supplier',
+            },
+            component: () => import('pages/Supplier/SupplierPage.vue')
+          },
+          {
+            path: 'add',
+            name: 'supplier-add',
+            meta: {
+              breadCrumbLink: false,
+              breadCrumbIcon: 'add',
+              breadCrumbLabel: 'adicionar',
+            },
+            component: () => import('pages/Supplier/SupplierForm.vue')
+          },
+          // {
+          //   path: 'edit/:uuid_supplier',
+          //   name: 'supplier-edit',
+          //   meta: {
+          //     breadCrumbLink: false,
+          //     breadCrumbIcon: 'edit',
+          //     breadCrumbLabel: 'editar',
+          //   },
+          //   component: () => import('pages/Product/SupplierForm.vue')
+          // },
+        ]
+      },
+      {
         path: 'shoppings',
         meta: {
           requiresAuth: true,
@@ -153,6 +196,7 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
+
   {
     path: '/login',
     name: 'login',

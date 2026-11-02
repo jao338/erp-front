@@ -1,5 +1,7 @@
 import type gsap from 'gsap';
 
+import type { PersonType } from "src/util/Enums";
+
 export type SizeType            =      'text' | 'button';
 export type MoneyStyleType      =      'decimal' | 'percent' | 'unit' | 'currency';
 export type AnimationMode       =      'from' | 'to' | 'fromTo';
@@ -83,7 +85,7 @@ export interface MenuItem {
 }
 
 export interface OptionsSelect {
-  value: string;
+  value: string|number;
   label: string;
 }
 
@@ -218,4 +220,14 @@ export interface ScatterGraphicData {
 
 export interface MessageFeedbackResponse {
   message: string;
+}
+
+export interface Person {
+  uuid: string
+  nome: string;
+  cpf: string;
+  cnpj: string;
+  email: string;
+  telefone: string;
+  tipo: PersonType.Company;
 }

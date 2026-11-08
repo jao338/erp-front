@@ -1,6 +1,6 @@
 <template>
   <CardGeneric
-    :label="useProductStore.uuid_product ? $t('editar') : $t('adicionar')"
+    :label="useProductStore.uuid_product ? $t('edit') : $t('add')"
     :icon="useProductStore.uuid_product ? 'edit' : 'add'"
   >
     <div v-if="loadingData" class="row q-col-gutter-md q-pa-md">
@@ -19,7 +19,7 @@
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         maxLength="50"
         :rules="[validateRequiredField]"
-        :label="$t('nome')"
+        :label="$t('name')"
         hasRequestErrors
         :requestErrors="{ errors: errors, field: 'nome' }"
       />
@@ -28,29 +28,29 @@
         v-model="form.custo_medio"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :rules="[validateRequiredField]"
-        :label="$t('custoMedio')"
+        :label="$t('averageCost')"
       />
 
       <InputMoney
         v-model="form.preco_venda"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :rules="[validateRequiredField]"
-        :label="$t('precoVenda')"
+        :label="$t('salePrice')"
       />
 
       <InputText
         v-model="form.quantidade"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :rules="[validateRequiredField]"
-        :label="$t('quantidade')"
+        :label="$t('quantity')"
         hasRequestErrors
         :requestErrors="{ errors: errors, field: 'quantidade' }"
       />
 
       <q-card-actions class="col-12 justify-end q-mt-lg">
         <ButtonGeneric
-          :label="$t('voltar')"
-          :aria-label="$t('voltar')"
+          :label="$t('back')"
+          :aria-label="$t('back')"
           :to="{ name: 'product' }"
           class="text-capitalize"
           color="primary"
@@ -59,7 +59,7 @@
         />
         <ButtonGeneric
           :loading="loadingSubmit"
-          :label="$t('salvar')"
+          :label="$t('save')"
           data-cy="btn-salvar"
           type="submit"
           color="positive"
@@ -151,7 +151,7 @@ async function submitForm(): Promise<void> {
 
 useMeta(() => {
   return {
-    title: (t('produto') + ' - ') + (useProductStore.uuid_product ? t('editar') : t('adicionar')),
+    title: (t('product') + ' - ') + (useProductStore.uuid_product ? t('edit') : t('add')),
   };
 });
 

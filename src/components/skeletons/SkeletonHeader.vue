@@ -15,7 +15,7 @@
           class="text-overline text-bold text-white"
           style="font-size: 20px; text-decoration: none"
         >
-          {{ t('nomeEmpresa') }}
+          {{ t('companyName') }}
         </router-link>
       </q-toolbar-title>
 

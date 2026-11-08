@@ -24,7 +24,7 @@ export default function useApi(url = '') {
   async function create<T>(form = {}, returnSucessMessage = true): Promise<{ data: T }> {
     const { data } = await api.post(url, form);
 
-    if (returnSucessMessage) successMessage(t('criadoSucesso'));
+    if (returnSucessMessage) successMessage(t('createdSuccessfully'));
 
     return { data: (data?.data ?? data) as T };
   }
@@ -36,16 +36,16 @@ export default function useApi(url = '') {
   ): Promise<void> {
     await api.put(`${url}/${uuid}`, form);
 
-    if (returnSucessMessage) successMessage(t('editadoSucesso'));
+    if (returnSucessMessage) successMessage(t('updatedSuccessfully'));
   }
 
   async function destroy(uuid: string, returnSucessMessage = true): Promise<void> {
     try {
       await api.delete(`${url}/${uuid}`);
 
-      if (returnSucessMessage) successMessage(t('excluidoSucesso'));
+      if (returnSucessMessage) successMessage(t('deletedSuccessfully'));
     } catch {
-      errorMessage(t('registroNaoPodeSerExcluido'));
+      errorMessage(t('recordCannotBeDeleted'));
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <CardGeneric
-    :label="useShoppingStore.uuid_shopping ? $t('editar') : $t('adicionar')"
+    :label="useShoppingStore.uuid_shopping ? $t('edit') : $t('add')"
     :icon="useShoppingStore.uuid_shopping ? 'edit' : 'add'"
   >
     <div v-if="loadingData" class="row q-col-gutter-md ">
@@ -18,7 +18,7 @@
         v-model="form.fornecedor_uuid"
         class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
         :rules="[validateRequiredField]"
-        :label="$t('fornecedor')"
+        :label="$t('supplier')"
         :options="optionsSuppliers"
         :loading="loadingSuppliers"
         hasRequestErrors
@@ -28,7 +28,7 @@
       <InputAdvancedSearch
         class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"
         v-model="produto.nome"
-        :label="$t('produto')"
+        :label="$t('product')"
         :clearable="true"
         modal="Produto"
         @emitValue="setValueProduto"
@@ -88,8 +88,8 @@
 
       <q-card-actions class="col-12 justify-end q-mt-lg">
         <ButtonGeneric
-          :label="$t('voltar')"
-          :aria-label="$t('voltar')"
+          :label="$t('back')"
+          :aria-label="$t('back')"
           :to="{ name: 'shopping' }"
           class="text-capitalize"
           color="primary"
@@ -98,7 +98,7 @@
         />
         <ButtonGeneric
           :loading="loadingSubmit"
-          :label="$t('salvar')"
+          :label="$t('save')"
           data-cy="btn-salvar"
           type="submit"
           color="positive"
@@ -175,42 +175,42 @@ const columns: QTableColumn[] = [
   {
     name: 'nome',
     field: 'nome',
-    label: t('nome'),
+    label: t('name'),
     sortable: true,
     align: 'center',
   },
   {
     name: 'custo_medio',
     field: 'custo_medio',
-    label: t('custoMedio'),
+    label: t('averageCost'),
     sortable: true,
     align: 'center',
   },
   {
     name: 'preco_unitario',
     field: 'preco_unitario',
-    label: t('precoUnitario'),
+    label: t('unitPrice'),
     sortable: true,
     align: 'center',
   },
   {
     name: 'preco_venda',
     field: 'preco_venda',
-    label: t('precoVenda'),
+    label: t('salePrice'),
     sortable: true,
     align: 'center',
   },
   {
     name: 'quantidade',
     field: 'quantidade',
-    label: t('quantidade'),
+    label: t('quantity'),
     sortable: true,
     align: 'center',
   },
   {
     name: 'actions',
     field: 'actions',
-    label: t('acoes'),
+    label: t('actions'),
     align: 'center',
   },
 ];
@@ -262,7 +262,7 @@ function remove(index: number): void {
 
 useMeta(() => {
   return {
-    title: (t('compra') + ' - ') + (useShoppingStore.uuid_shopping ? t('editar') : t('adicionar')),
+    title: (t('purchase') + ' - ') + (useShoppingStore.uuid_shopping ? t('edit') : t('add')),
   };
 });
 

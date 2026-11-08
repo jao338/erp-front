@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
     meta: {
       breadCrumbLink: true,
       breadCrumbIcon: 'home',
-      breadCrumbLabel: 'paginaInicial',
+      breadCrumbLabel: 'homePage',
       requiresAuth: true
     },
     children: [
@@ -18,7 +18,7 @@ const routes: RouteRecordRaw[] = [
           requiresAuth: true,
           breadCrumbLink: true,
           breadCrumbIcon: 'home',
-          breadCrumbLabel: 'home',
+          breadCrumbLabel: 'homePage',
         },
         component: () => import('pages/Index/IndexPage.vue')
       },
@@ -27,8 +27,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           requiresAuth: true,
           breadCrumbLink: true,
-          breadCrumbIcon: '',
-          breadCrumbLabel: 'produto',
+          breadCrumbIcon: 'inventory_2',
+          breadCrumbLabel: 'product',
         },
         redirect: { name: 'product' },
         component: () => import('pages/Product/ProductLayout.vue'),
@@ -38,8 +38,8 @@ const routes: RouteRecordRaw[] = [
             name: 'product',
             meta: {
               breadCrumbLink: true,
-              breadCrumbIcon: '',
-              breadCrumbLabel: 'produto',
+              breadCrumbIcon: 'inventory_2',
+              breadCrumbLabel: 'product',
             },
             component: () => import('pages/Product/ProductPage.vue')
           },
@@ -49,7 +49,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'add',
-              breadCrumbLabel: 'adicionar',
+              breadCrumbLabel: 'add',
             },
             component: () => import('pages/Product/ProductForm.vue')
           },
@@ -59,7 +59,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'edit',
-              breadCrumbLabel: 'editar',
+              breadCrumbLabel: 'edit',
             },
             component: () => import('pages/Product/ProductForm.vue')
           },
@@ -70,7 +70,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           requiresAuth: true,
           breadCrumbLink: true,
-          breadCrumbIcon: 'business',
+          breadCrumbIcon: 'local_shipping',
           breadCrumbLabel: 'supplier',
         },
         redirect: { name: 'supplier' },
@@ -81,7 +81,7 @@ const routes: RouteRecordRaw[] = [
             name: 'supplier',
             meta: {
               breadCrumbLink: true,
-              breadCrumbIcon: 'business',
+              breadCrumbIcon: 'local_shipping',
               breadCrumbLabel: 'supplier',
             },
             component: () => import('pages/Supplier/SupplierPage.vue')
@@ -92,20 +92,20 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'add',
-              breadCrumbLabel: 'adicionar',
+              breadCrumbLabel: 'add',
             },
             component: () => import('pages/Supplier/SupplierForm.vue')
           },
-          // {
-          //   path: 'edit/:uuid_supplier',
-          //   name: 'supplier-edit',
-          //   meta: {
-          //     breadCrumbLink: false,
-          //     breadCrumbIcon: 'edit',
-          //     breadCrumbLabel: 'editar',
-          //   },
-          //   component: () => import('pages/Product/SupplierForm.vue')
-          // },
+          {
+            path: 'edit/:uuid_supplier',
+            name: 'supplier-edit',
+            meta: {
+              breadCrumbLink: false,
+              breadCrumbIcon: 'edit',
+              breadCrumbLabel: 'edit',
+            },
+            component: () => import('pages/Supplier/SupplierForm.vue')
+          },
         ]
       },
       {
@@ -113,8 +113,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           requiresAuth: true,
           breadCrumbLink: true,
-          breadCrumbIcon: '',
-          breadCrumbLabel: 'compra',
+          breadCrumbIcon: 'shopping_cart_checkout',
+          breadCrumbLabel: 'purchase',
         },
         redirect: { name: 'shopping' },
         component: () => import('pages/Shopping/ShoppingLayout.vue'),
@@ -124,8 +124,8 @@ const routes: RouteRecordRaw[] = [
             name: 'shopping',
             meta: {
               breadCrumbLink: true,
-              breadCrumbIcon: 'home',
-              breadCrumbLabel: 'compra',
+              breadCrumbIcon: 'shopping_cart_checkout',
+              breadCrumbLabel: 'purchase',
             },
             component: () => import('pages/Shopping/ShoppingPage.vue')
           },
@@ -135,7 +135,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'add',
-              breadCrumbLabel: 'adicionar',
+              breadCrumbLabel: 'add',
             },
             component: () => import('pages/Shopping/ShoppingForm.vue')
           },
@@ -145,7 +145,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'edit',
-              breadCrumbLabel: 'editar',
+              breadCrumbLabel: 'edit',
             },
             component: () => import('pages/Shopping/ShoppingForm.vue')
           },
@@ -156,8 +156,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           requiresAuth: true,
           breadCrumbLink: true,
-          breadCrumbIcon: '',
-          breadCrumbLabel: 'venda',
+          breadCrumbIcon: 'point_of_sale',
+          breadCrumbLabel: 'sale',
         },
         redirect: { name: 'sale' },
         component: () => import('pages/Sale/SaleLayout.vue'),
@@ -167,8 +167,8 @@ const routes: RouteRecordRaw[] = [
             name: 'sale',
             meta: {
               breadCrumbLink: true,
-              breadCrumbIcon: 'home',
-              breadCrumbLabel: 'venda',
+              breadCrumbIcon: 'point_of_sale',
+              breadCrumbLabel: 'sale',
             },
             component: () => import('pages/Sale/SalePage.vue')
           },
@@ -178,7 +178,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'add',
-              breadCrumbLabel: 'adicionar',
+              breadCrumbLabel: 'add',
             },
             component: () => import('pages/Sale/SaleForm.vue')
           },
@@ -188,7 +188,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               breadCrumbLink: false,
               breadCrumbIcon: 'edit',
-              breadCrumbLabel: 'editar',
+              breadCrumbLabel: 'edit',
             },
             component: () => import('pages/Sale/SaleForm.vue')
           },

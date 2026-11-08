@@ -9,19 +9,19 @@ export default function useValidations() {
   const { t } = useI18n();
 
   function validateRequiredField(val: unknown): boolean | string {
-    if (val == null) return t('campoObrigatorio');
+    if (val == null) return t('requiredField');
 
     const { getInputType } = useHelpers();
 
     switch (getInputType(val)) {
       case FieldType.TextField:
-        return (val as string).trim().length > 0 || t('campoObrigatorio');
+        return (val as string).trim().length > 0 || t('requiredField');
 
       case FieldType.SelectField:
-        return (val as unknown[]).length > 0 || t('campoObrigatorio');
+        return (val as unknown[]).length > 0 || t('requiredField');
 
       case FieldType.ObjectField:
-        return Object.keys(val as Record<string, unknown>).length > 0 || t('campoObrigatorio');
+        return Object.keys(val as Record<string, unknown>).length > 0 || t('requiredField');
 
       default:
         return true;
@@ -31,13 +31,13 @@ export default function useValidations() {
   function validateDate(val: string): boolean | string {
     if (!val) return true
 
-    return dayjs(val, 'DD/MM/YYYY', true).isValid() || t('dataInvalida')
+    return dayjs(val, 'DD/MM/YYYY', true).isValid() || t('invalidDate')
   }
 
   function validateDateTime(val: string): boolean | string {
     if (!val) return true
 
-    return dayjs(val, 'DD/MM/YYYY HH:mm', true).isValid() || t('dataInvalida')
+    return dayjs(val, 'DD/MM/YYYY HH:mm', true).isValid() || t('invalidDate')
   }
 
   function validateEmail(val: string): boolean | string {
@@ -45,33 +45,33 @@ export default function useValidations() {
 
     const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-    return pattern.test(val) || t('emailValido')
+    return pattern.test(val) || t('invalidEmail')
   }
 
   function validateCapitalLetter(val: string): boolean | string {
     const capitalLetterPattern = /[A-Z]/
 
-    return capitalLetterPattern.test(val) || t('deveConterPeloMenosUmaLetraMaiuscula')
+    return capitalLetterPattern.test(val) || t('atLeastOneUppercaseLetter')
   }
 
   function validateContainsNumber(val: string): boolean | string {
     const pattern = /[0-9]/
 
-    return pattern.test(val) || t('deveConterPeloMenosUmNumero')
+    return pattern.test(val) || t('atLeastOneNumber')
   }
 
   function validateContainsSpecialCharacter(val: string): boolean | string {
     const pattern = /[^a-zA-Z0-9]/
 
-    return pattern.test(val) || t('deveConterPeloMenosUmCaracterEspecial')
+    return pattern.test(val) || t('atLeastOneSpecialCharacter')
   }
 
   function validateMinLength(val: string, length: number): boolean | string {
-    return val.length >= length || t('tamanhoMinimo', { length: length })
+    return val.length >= length || t('minLength', { length: length })
   }
 
   function validateRange(val: number, min: number, max: number): boolean | string {
-    return (val >= min && val <= max) || t('limiteInvalido', { min, max })
+    return (val >= min && val <= max) || t('invalidLength', { min, max })
   }
 
   function validatePassword(val: string, minLength: number): boolean | string {
@@ -88,11 +88,11 @@ export default function useValidations() {
     if (containsSpecialCharacter !== true) return containsSpecialCharacter
 
     const strength = calculatePasswordStrength(val)
-    return strength >= 50 || t('senhaDeveSerMaisForte')
+    return strength >= 50 || t('passwordTooWeak')
   }
 
   function validateEqualFields(val: string, equalVal: string): boolean | string {
-    return val === equalVal || t('camposNaoConferem')
+    return val === equalVal || t('fieldsDoNotMatch')
   }
 
   return {

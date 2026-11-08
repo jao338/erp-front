@@ -31,8 +31,8 @@ export default function useFormat() {
   }
 
   function formatPhone(phone: string|undefined): string {
-    if (phone && phone.length === 12) {
-      return `(${phone.slice(0, 3)})${phone.slice(3, 8)}-${phone.slice(8, 12)}`;
+    if (phone && phone.length === 11) {
+      return `(0${phone.slice(0, 2)}) ${phone.slice(2, 7)}-${phone.slice(7, 11)}`;
     }
     return '';
   }

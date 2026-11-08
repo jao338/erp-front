@@ -229,5 +229,5 @@ export interface Person {
   cnpj: string;
   email: string;
   telefone: string;
-  tipo: PersonType.Company;
+  tipo: PersonType;
 }

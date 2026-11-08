@@ -30,7 +30,7 @@ const route = useRoute();
 
 useMeta(() => {
   return {
-    title: t('nomeEmpresa'),
+    title: t('companyName'),
   }
 })
 </script>

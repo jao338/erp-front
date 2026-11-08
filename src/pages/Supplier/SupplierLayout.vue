@@ -4,16 +4,16 @@
       <TitleH4 :title="$t('supplier')" :caption="$t('supplierCaption')" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"/>
       <div class="row col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="full-width flex-end">
-          <Breadcrumb v-if="!isMobile"/>
+          <Breadcrumb v-if="!isMobileComputed"/>
         </div>
       </div>
-      <div v-if="isIndex" class="col-12 flex-end">
+      <div v-if="isIndexComputed" class="col-12 flex-end">
         <ButtonGeneric
           class="text-capitalize"
           color="primary"
           icon="add"
-          :label="$t('adicionar')"
-          :aria-label="$t('adicionar')"
+          :label="$t('add')"
+          :aria-label="$t('add')"
           :to="{ name: 'supplier-add' }"
           data-cy="btn-add"
           :size="formatSizes('button')"
@@ -41,11 +41,11 @@ import { useRouter } from 'vue-router';
 const { formatSizes } = useFormat();
 const { t } = useI18n()
 
-const $q = useQuasar();
+const $q     = useQuasar();
 const router = useRouter();
 
-const isIndex = computed(() => router.currentRoute.value.name === 'supplier')
-const isMobile = computed<boolean>(() => $q.platform.is.mobile)
+const isIndexComputed  = computed<boolean>(() => router.currentRoute.value.name === 'supplier')
+const isMobileComputed = computed<boolean>(() => $q.platform.is.mobile)
 
 useMeta(() => {
   return {

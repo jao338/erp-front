@@ -1,5 +1,5 @@
 <template>
-  <CardGeneric :label="$t('compra', 2)">
+  <CardGeneric :label="$t('purchase', 2)">
       <q-form
         ref="formRef"
         @submit.prevent="searchData()"
@@ -14,13 +14,13 @@
 
           <InputDate
             v-model="form.criado_em"
-            :label="t('criadoEm')"
+            :label="t('createdAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputDate
             v-model="form.atualizado_em"
-            :label="t('atualizadoEm')"
+            :label="t('updatedAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
@@ -34,7 +34,7 @@
           <ButtonGeneric
             :loading="loadingSubmit"
             data-cy="btn-filtrar"
-            :label="$t('filtrar')"
+            :label="$t('filter')"
             type="submit"
             color="primary"
             icon="search"
@@ -119,37 +119,37 @@ const form = ref<SaleFilter>({
 });
 
 const optionsRadio = ref<RadioOptions[]>([
-  { label: t('ativo'), val: '1', color: 'blue' },
-  { label: t('inativo'), val: '0', color: 'red' },
+  { label: t('active'), val: '1', color: 'blue' },
+  { label: t('inactive'), val: '0', color: 'red' },
 ]);
 
 const columns: QTableColumn[] = [
   {
     name: 'ativo',
     field: 'ativo',
-    label: t('ativo'),
+    label: t('active'),
     sortable: false,
     align: 'left',
-    format: val => val ? t('ativo') : t('inativo')
+    format: val => val ? t('active') : t('inactive')
   },
   {
     name: 'lucro',
     field: 'lucro',
-    label: t('lucro'),
+    label: t('profit'),
     sortable: false,
     align: 'left',
   },
   {
     name: 'cliente',
     field: 'cliente',
-    label: t('cliente'),
+    label: t('customer'),
     sortable: false,
     align: 'left',
   },
   {
     name: 'criado_em',
     field: 'criado_em',
-    label: t('criadoEm'),
+    label: t('createdAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -158,7 +158,7 @@ const columns: QTableColumn[] = [
   {
     name: 'atualizado_em',
     field: 'atualizado_em',
-    label: t('atualizadoEm'),
+    label: t('updatedAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -166,12 +166,12 @@ const columns: QTableColumn[] = [
   {
     name: 'actions',
     field: 'actions',
-    label: t('acoes'),
+    label: t('actions'),
     align: 'center',
   },
 ];
 
-async function searchData(props: any = {}): Promise<void> {
+async function searchData(props: { pagination?: Pagination } = {}): Promise<void> {
   setPagination(
     pagination.value,
     props.pagination?.page ?? 1,

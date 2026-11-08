@@ -23,7 +23,7 @@
                 @submit.prevent="verifyCode"
               >
                 <p class="text-center">
-                  {{ t('digiteOCodigoPorEmail') }}
+                  {{ t('enterEmailCode') }}
                 </p>
 
                 <InputOtp
@@ -50,7 +50,7 @@
                     color="primary"
                     data-cy="btn-verify-code"
                     :loading="loadingSend"
-                    :label="t('enviar')"
+                    :label="t('send')"
                     class="full-width button-rounded"
                   />
 
@@ -58,7 +58,7 @@
                     color="primary"
                     outline
                     data-cy="btn-back"
-                    :label="t('voltar')"
+                    :label="t('back')"
                     class="full-width button-rounded"
                     @click="redirectBack"
                   />
@@ -134,11 +134,11 @@ async function verifyCode(): Promise<void> {
 
 useMeta(() => {
   return {
-    title: t('verificarCodigoAcesso'),
+    title: t('verifyAccessCode'),
     meta: {
       description: {
         name: 'description',
-        content: t('verificarCodigoAcesso'),
+        content: t('verifyAccessCode'),
       },
     },
   };

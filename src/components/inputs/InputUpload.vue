@@ -17,7 +17,7 @@
             <div class="q-uploader__title">{{ label }}</div>
             <div class="q-uploader__subtitle row justify-between">
               <p>{{ scope.uploadSizeLabel }}</p>
-              <p>{{ $t('tamanhoMaximo10mb') }}</p>
+              <p>{{ $t('maxSize10mb') }}</p>
             </div>
           </div>
           <q-btn v-if="scope.canAddFiles" icon="add_box" @click="scope.pickFiles" round dense flat>

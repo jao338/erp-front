@@ -20,7 +20,7 @@
               class="desktop-select"
               v-model="currentLang"
               :options="languages"
-              :label="t('idioma')"
+              :label="t('language')"
             />
           </div>
         </div>
@@ -33,12 +33,12 @@
 
         <div class="column menu-column">
           <div class="text-subtitle1 q-mb-sm">
-            {{ t('configuracao', 2) }}
+            {{ t('configuration', 2) }}
           </div>
           <q-toggle
             style="width: max-content"
             :model-value="darkMode"
-            :label="t('modoEscuro')"
+            :label="t('darkMode')"
             @click="useSystemStore.toggleDarkMode"
           />
         </div>
@@ -54,7 +54,7 @@
           <q-btn
             data-cy="btn-logout"
             color="negative"
-            :label="t('sair')"
+            :label="t('logout')"
             push
             size="sm"
             @click="logout"
@@ -65,11 +65,11 @@
       <div class="column q-pa-sm lt-md">
         <div class="row items-center q-pb-sm">
           <div class="col">
-            <div class="text-subtitle1 q-mb-xs">{{ t('idioma') }}</div>
+            <div class="text-subtitle1 q-mb-xs">{{ t('language') }}</div>
             <InputSelect
               v-model="currentLang"
               :options="languages"
-              :label="t('idioma')"
+              :label="t('language')"
               class="full-width"
             />
           </div>
@@ -79,11 +79,11 @@
 
         <div class="row items-center q-pb-sm">
           <div class="col">
-            <div class="text-subtitle1 q-mb-xs">{{ t('configuracao', 2) }}</div>
+            <div class="text-subtitle1 q-mb-xs">{{ t('configuration', 2) }}</div>
             <q-toggle
               style="width: max-content"
               :model-value="darkMode"
-              :label="t('modoEscuro')"
+              :label="t('darkMode')"
               @click="useSystemStore.toggleDarkMode"
             />
           </div>
@@ -97,7 +97,7 @@
             <q-btn
               data-cy="btn-logout"
               color="negative"
-              :label="t('sair')"
+              :label="t('logout')"
               push
               size="sm"
               @click="logout"
@@ -138,8 +138,8 @@ const { locale, t } = useI18n();
 const loadingLogin = ref<boolean>(false);
 const errors = ref<RequestErrors>({});
 const languages = ref<OptionsSelect[]>([
-  { label: t('portugues'), value: Lang.Portuguese },
-  { label: t('ingles'), value: Lang.English },
+  { label: t('portuguese'), value: Lang.Portuguese },
+  { label: t('english'), value: Lang.English },
 ]);
 
 const currentLang = ref<Lang>(locale.value as Lang);
@@ -148,7 +148,7 @@ const router      = useRouter();
 async function logout(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await requestLogout(t('logoutFeitoComSucesso')).finally(() =>
+    await requestLogout(t('logoutSuccess')).finally(() =>
       void router.replace({ name: 'login' }),
     );
   } catch (error: any) {

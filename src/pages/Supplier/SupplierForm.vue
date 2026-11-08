@@ -1,6 +1,6 @@
 <template>
   <CardGeneric
-    :label="useSupplierStore.uuid_supplier ? $t('editar') : $t('adicionar')"
+    :label="useSupplierStore.uuid_supplier ? $t('edit') : $t('add')"
     :icon="useSupplierStore.uuid_supplier ? 'edit' : 'add'"
   >
     <div v-if="loadingData" class="row q-col-gutter-md q-pa-md">
@@ -19,7 +19,7 @@
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         maxLength="50"
         :rules="[validateRequiredField]"
-        :label="$t('nome')"
+        :label="$t('name')"
         hasRequestErrors
         :requestErrors="{ errors: errors, field: 'nome' }"
       />
@@ -35,8 +35,8 @@
       <InputText
         v-model="form.telefone"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
-        :label="$t('telefone')"
-        :hint="$t('inFormatPhone')"
+        :label="$t('phone')"
+        :hint="$t('phoneFormatHint')"
         hasRequestErrors
         :requestErrors="{ errors: errors, field: 'telefone' }"
         :mask="Mask.TelefoneMovel"
@@ -46,7 +46,7 @@
       <InputSelect
         v-model="form.tipo"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
-        :label="$t('tipo')"
+        :label="$t('type')"
         :options="optionsType"
       />
 
@@ -72,8 +72,8 @@
 
       <q-card-actions class="col-12 justify-end q-mt-lg">
         <ButtonGeneric
-          :label="$t('voltar')"
-          :aria-label="$t('voltar')"
+          :label="$t('back')"
+          :aria-label="$t('back')"
           :to="{ name: 'supplier' }"
           class="text-capitalize"
           color="primary"
@@ -82,7 +82,7 @@
         />
         <ButtonGeneric
           :loading="loadingSubmit"
-          :label="$t('salvar')"
+          :label="$t('save')"
           data-cy="btn-salvar"
           type="submit"
           color="positive"
@@ -184,7 +184,7 @@ async function submitForm(): Promise<void> {
 
 useMeta(() => {
   return {
-    title: (t('supplier') + ' - ') + (useSupplierStore.uuid_supplier ? t('editar') : t('adicionar')),
+    title: (t('supplier') + ' - ') + (useSupplierStore.uuid_supplier ? t('edit') : t('add')),
   };
 });
 

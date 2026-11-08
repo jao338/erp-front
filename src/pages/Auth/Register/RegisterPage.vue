@@ -9,7 +9,7 @@
 
           <q-card-section class="q-pt-none">
             <p class="q-ma-none text-h5 text-weight-bold text-center text-primary">
-              {{ t('registre') }}
+              {{ t('signUp') }}
             </p>
           </q-card-section>
 
@@ -29,7 +29,7 @@
                 v-model="form.name"
                 data-cy="text-name"
                 has-request-errors
-                :label="$t('nome')"
+                :label="$t('name')"
                 :rules="[validateRequiredField]"
                 :request-errors="{ errors, field: 'name' }"
                 class="col-12 col-md-6"
@@ -39,7 +39,7 @@
                 v-model="form.password"
                 data-cy="text-password"
                 has-request-errors
-                :label="$t('senha')"
+                :label="$t('password')"
                 :rules="[validateRequiredField]"
                 :request-errors="{ errors, field: 'password' }"
                 class="col-12 col-md-6"
@@ -48,7 +48,7 @@
               <InputPassword
                 v-model="form.confirm_password"
                 data-cy="text-confirm_password"
-                :label="$t('confirmeSuaSenha')"
+                :label="$t('confirmPassword')"
                 :rules="[validateRequiredField]"
                 :request-errors="{ errors, field: 'confirm_password' }"
                 has-request-errors
@@ -61,14 +61,14 @@
                   color="primary"
                   data-cy="btn-register"
                   :loading="loadingRegister"
-                  :label="$t('registrar')"
+                  :label="$t('register')"
                   class="button-rounded full-width"
                 />
 
                 <ButtonGeneric
                   color="primary"
                   data-cy="btn-back"
-                  :label="$t('voltar')"
+                  :label="$t('back')"
                   outline
                   class="button-rounded full-width"
                   @click="redirectBack"
@@ -138,11 +138,11 @@ async function register(): Promise<void> {
 
 useMeta(() => {
   return {
-    title: t('registre'),
+    title: t('signUp'),
     meta: {
       description: {
         name: 'description',
-        content: t('registre'),
+        content: t('signUp'),
       },
     },
   };

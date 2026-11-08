@@ -8,7 +8,7 @@
         <q-card-section class="row col-12 justify-start q-col-gutter-md">
           <InputText
             v-model="form.nome"
-            :label="t('nome')"
+            :label="t('name')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
@@ -20,7 +20,7 @@
 
           <InputText
             v-model="form.telefone"
-            :label="t('telefone')"
+            :label="t('phone')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
@@ -41,7 +41,7 @@
           <ButtonGeneric
             :loading="loadingSubmit"
             data-cy="btn-filtrar"
-            :label="$t('filtrar')"
+            :label="$t('filter')"
             type="submit"
             color="primary"
             icon="search"
@@ -112,6 +112,7 @@ const {
   toggleLoading,
   setPagination,
   getPagination,
+  getRequestErrors,
 } = useHelpers();
 const { formatDate, formatSizes, formatPhone, formatCPF, formatCNPJ } = useFormat();
 const { confirmDelete } = useDialog();
@@ -139,7 +140,7 @@ const columns: QTableColumn[] = [
   {
     name: 'nome',
     field: 'nome',
-    label: t('nome'),
+    label: t('name'),
     sortable: false,
     align: 'left',
   },
@@ -169,7 +170,7 @@ const columns: QTableColumn[] = [
   {
     name: 'telefone',
     field: 'telefone',
-    label: t('telefone'),
+    label: t('phone'),
     sortable: false,
     align: 'left',
     format: val => formatPhone(val)
@@ -177,15 +178,15 @@ const columns: QTableColumn[] = [
   {
     name: 'tipo',
     field: 'tipo',
-    label: t('tipo'),
+    label: t('type'),
     sortable: false,
     align: 'left',
-    format: val => t(val === 1 ? t('individual') : 'company')
+    format: val => t(val === 1 ? 'individual' : 'company')
   },
   {
     name: 'criado_em',
     field: 'criado_em',
-    label: t('criadoEm'),
+    label: t('createdAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -193,7 +194,7 @@ const columns: QTableColumn[] = [
   {
     name: 'atualizado_em',
     field: 'atualizado_em',
-    label: t('atualizadoEm'),
+    label: t('updatedAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -201,12 +202,12 @@ const columns: QTableColumn[] = [
   {
     name: 'actions',
     field: 'actions',
-    label: t('acoes'),
+    label: t('actions'),
     align: 'center',
   },
 ];
 
-async function searchData(props: any = {}): Promise<void> {
+async function searchData(props: { pagination?: Pagination } = {}): Promise<void> {
   setPagination(
     pagination.value,
     props.pagination?.page ?? 1,
@@ -238,8 +239,8 @@ async function fetchData(): Promise<void> {
       data.meta.per_page,
       data.meta.total,
     );
-  } catch (error: any) {
-    errors.value = error.response?.data.errors ?? {};
+  } catch (error: unknown) {
+    errors.value = getRequestErrors(error);
   }
   finally {
     toggleLoading(loadingData);

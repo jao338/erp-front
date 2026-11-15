@@ -34,13 +34,13 @@
                   icon="send"
                   data-cy="btn-send"
                   :loading="loadingRequest"
-                  :label="$t('enviar')"
+                  :label="$t('send')"
                   class="full-width button-rounded"
                 />
                 <ButtonGeneric
                   color="primary"
                   data-cy="btn-back"
-                  :label="$t('voltar')"
+                  :label="$t('back')"
                   outline
                   class="full-width button-rounded"
                   @click="redirectBack"
@@ -111,11 +111,11 @@ async function firstAccess(): Promise<void> {
 
 useMeta(() => {
   return {
-    title: t('primeiroAcesso'),
+    title: t('firstAccess'),
     meta: {
       description: {
         name: 'description',
-        content: t('primeiroAcesso'),
+        content: t('firstAccess'),
       },
     },
   };

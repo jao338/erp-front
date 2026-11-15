@@ -1,0 +1,13 @@
+{
+  "create": {
+    "supplier-name": "Fornecedor E2E",
+    "supplier-email": "fornecedor.e2e@example.com",
+    "supplier-phone": "11987654321",
+    "supplier-type": "{downArrow}{enter}",
+    "supplier-cnpj": "04252011000110"
+  },
+  "update": {
+    "supplier-name": "Fornecedor E2E Editado",
+    "supplier-email": "fornecedor.e2e.editado@example.com"
+  }
+}

@@ -13,7 +13,7 @@
           <div class="q-uploader__title">{{ computedLabel }}</div>
           <div class="q-uploader__subtitle row justify-between">
             <p>{{ scope.uploadSizeLabel }}</p>
-            <p>{{ $t('tamanho_maximo') }}</p>
+            <p>{{ $t('maxSize10mb') }}</p>
           </div>
         </div>
         <q-btn
@@ -40,7 +40,7 @@ const { t } = useI18n()
 
 const emits = defineEmits(['addFile', 'removedFile'])
 
-const computedLabel = computed(() => props.label || t('selecioneSeusArquivos'))
+const computedLabel = computed(() => props.label || t('selectFiles'))
 
 const props = defineProps({
   label: {

@@ -25,7 +25,7 @@
           <ButtonGeneric
             :disable="!(props.modelValue > 0)"
             @click="stepper?.previous()"
-            :label="t('voltar')"
+            :label="t('back')"
             outline
             color="primary"
             icon="arrow_back"
@@ -34,7 +34,7 @@
           <ButtonGeneric
             color="primary"
             @click="isLastStep ? emits('finish', true) : stepper?.next()"
-            :label="isLastStep ? t('finalizar') : t('continuar')"
+            :label="isLastStep ? t('finish') : t('continue')"
             :icon="isLastStep ? 'save' : 'arrow_forward'"
             :size="formatSizes('button')"
           />

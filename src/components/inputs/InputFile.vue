@@ -7,7 +7,7 @@
     :readonly="readonly"
     :accept="accept"
     max-total-size="10485760"
-    :hint="$t('tamanhoMaximo10mb')"
+    :hint="$t('maxSize10mb')"
     outlined
     hide-bottom-space
     lazy-rules

@@ -59,7 +59,7 @@ export default defineConfig((ctx) => {
       // analyze: true,
       env: {
         API_URL: ctx.dev ? "http://localhost/api/" : "http://localhost/api/",
-        APP_NAME: "FONE NINJA",
+        APP_NAME: "ERP",
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -100,13 +100,21 @@ export default defineConfig((ctx) => {
           { server: false },
         ],
       ],
+
+      extendViteConf(viteConf) {
+        viteConf.server = {
+          ...viteConf.server,
+          allowedHosts: true,
+        };
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
       port: 9000,
       host: '0.0.0.0',
-      open: false
+      open: false,
+      allowedHosts: true,
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework
@@ -220,7 +228,7 @@ export default defineConfig((ctx) => {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'front-padrao',
+        appId: 'erp',
       },
     },
 

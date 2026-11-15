@@ -1,5 +1,5 @@
 <template>
-  <CardGeneric :label="$t('produto')">
+  <CardGeneric :label="$t('product')">
       <q-form
         ref="formRef"
         @submit.prevent="searchData()"
@@ -8,25 +8,25 @@
         <q-card-section class="row col-12 justify-start q-col-gutter-md">
           <InputText
             v-model="form.nome"
-            :label="t('nome')"
+            :label="t('name')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputText
             v-model="form.quantidade"
-            :label="t('quantidade')"
+            :label="t('quantity')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputDate
             v-model="form.criado_em"
-            :label="t('criadoEm')"
+            :label="t('createdAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputDate
             v-model="form.atualizado_em"
-            :label="t('atualizadoEm')"
+            :label="t('updatedAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
         </q-card-section>
@@ -34,7 +34,7 @@
           <ButtonGeneric
             :loading="loadingSubmit"
             data-cy="btn-filtrar"
-            :label="$t('filtrar')"
+            :label="$t('filter')"
             type="submit"
             color="primary"
             icon="search"
@@ -133,14 +133,14 @@ const columns: QTableColumn[] = [
   {
     name: 'nome',
     field: 'nome',
-    label: t('nome'),
+    label: t('name'),
     sortable: false,
     align: 'left',
   },
   {
     name: 'custo_medio',
     field: 'custo_medio',
-    label: t('custoMedio'),
+    label: t('averageCost'),
     sortable: false,
     align: 'left',
     format: val => 'R$ ' + val
@@ -148,7 +148,7 @@ const columns: QTableColumn[] = [
   {
     name: 'preco_venda',
     field: 'preco_venda',
-    label: t('precoVenda'),
+    label: t('salePrice'),
     sortable: false,
     align: 'left',
     format: val => 'R$ ' + val
@@ -156,14 +156,14 @@ const columns: QTableColumn[] = [
   {
     name: 'quantidade',
     field: 'quantidade',
-    label: t('quantidade'),
+    label: t('quantity'),
     sortable: false,
     align: 'left',
   },
   {
     name: 'criado_em',
     field: 'criado_em',
-    label: t('criadoEm'),
+    label: t('createdAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -171,7 +171,7 @@ const columns: QTableColumn[] = [
   {
     name: 'atualizado_em',
     field: 'atualizado_em',
-    label: t('atualizadoEm'),
+    label: t('updatedAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -179,12 +179,12 @@ const columns: QTableColumn[] = [
   {
     name: 'actions',
     field: 'actions',
-    label: t('acoes'),
+    label: t('actions'),
     align: 'center',
   },
 ];
 
-async function searchData(props: any = {}): Promise<void> {
+async function searchData(props: { pagination?: Pagination } = {}): Promise<void> {
   setPagination(
     pagination.value,
     props.pagination?.page ?? 1,

@@ -78,9 +78,9 @@ export default defineConfig({
       return config;
     },
     env: {
-      CY_USER: 'admin',
-      CY_PASSWORD: 'M@sterk3y',
-      CY_URL: 'http://localhost:9000',
+      CY_USER: "admin@teste.com",
+      CY_PASSWORD: "Senha_nada_segura123",
+      CY_URL: "http://localhost:9000/",
     },
   },
 });

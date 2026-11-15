@@ -3,11 +3,11 @@
     <div class="row justify-start items-center">
       <TitleH4
         class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12"
-        :title="t('paginaInicial')"
-        :caption="t('paginaInicialCaption')"
+        :title="t('homePage')"
+        :caption="t('homePageCaption')"
       />
       <CardGeneric class="row items-center justify-center q-mt-md col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <TitleH6 :title="t('paginaInicial')" :caption="t('infoHome')" align="center" />
+          <TitleH6 :title="t('homePage')" :caption="t('homeInfo')" align="center" />
       </CardGeneric>
     </div>
   </q-page>
@@ -30,14 +30,14 @@ const { t } = useI18n();
 
 useMeta(() => {
   return {
-    title: t('paginaInicial'),
+    title: t('homePage'),
   };
 });
 
 useHotkeys({
   keys: ['a', 'b', 'c', 'd', 'e', 'f'],
   callback: () => {
-    successMessage(t('nomeEmpresa'))
+    successMessage(t('companyName'))
   },
 });
 

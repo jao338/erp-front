@@ -31,3 +31,9 @@ yarn-error.log*
 
 # local .env files
 .env.local*
+
+#Cypress
+/cypress/screenshots
+/cypress/downloads
+/cypress/videos
+/cypress/support/logs

@@ -8,30 +8,35 @@
         <q-card-section class="row col-12 justify-start q-col-gutter-md">
           <InputText
             v-model="form.nome"
+            data-cy="supplier-filter-name"
             :label="t('name')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputText
             v-model="form.email"
+            data-cy="supplier-filter-email"
             :label="t('email')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputText
             v-model="form.telefone"
+            data-cy="supplier-filter-phone"
             :label="t('phone')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputText
             v-model="form.cnpj"
+            data-cy="supplier-filter-cnpj"
             :label="t('cnpj')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputText
             v-model="form.cpf"
+            data-cy="supplier-filter-cpf"
             :label="t('cpf')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />

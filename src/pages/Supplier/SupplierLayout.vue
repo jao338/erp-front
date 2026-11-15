@@ -1,7 +1,12 @@
 <template>
   <q-page class="q-pa-lg">
     <div class="row justify-between items-center">
-      <TitleH4 :title="$t('supplier')" :caption="$t('supplierCaption')" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"/>
+      <TitleH4
+        data-cy="page-title"
+        :title="$t('supplier')"
+        :caption="$t('supplierCaption')"
+        class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"
+      />
       <div class="row col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="full-width flex-end">
           <Breadcrumb v-if="!isMobileComputed"/>

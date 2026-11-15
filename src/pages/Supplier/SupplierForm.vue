@@ -16,6 +16,7 @@
     >
       <InputText
         v-model="form.nome"
+        data-cy="supplier-name"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         maxLength="50"
         :rules="[validateRequiredField]"
@@ -26,6 +27,7 @@
 
       <InputText
         v-model="form.email"
+        data-cy="supplier-email"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :label="$t('email')"
         hasRequestErrors
@@ -34,6 +36,7 @@
 
       <InputText
         v-model="form.telefone"
+        data-cy="supplier-phone"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :label="$t('phone')"
         :hint="$t('phoneFormatHint')"
@@ -45,6 +48,7 @@
 
       <InputSelect
         v-model="form.tipo"
+        data-cy="supplier-type"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :label="$t('type')"
         :options="optionsType"
@@ -52,6 +56,7 @@
 
       <InputText
         v-model="form.cpf"
+        data-cy="supplier-cpf"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :label="$t('cpf')"
         hasRequestErrors
@@ -62,6 +67,7 @@
 
       <InputText
         v-model="form.cnpj"
+        data-cy="supplier-cnpj"
         class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"
         :label="$t('cnpj')"
         hasRequestErrors

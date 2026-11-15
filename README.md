@@ -38,6 +38,20 @@ A aplicação estará disponível em:
 http://localhost:9000
 ```
 
+### Executar os testes E2E
+
+Com o serviço `frontend` em execução, rode o teste de fornecedores no container preparado para o Cypress:
+
+```bash
+docker compose run --rm frontend-e2e-tests
+```
+
+Para executar todos os specs E2E, substitua o comando padrão:
+
+```bash
+docker compose run --rm frontend-e2e-tests cypress run
+```
+
 ### Parar o projeto
 
 ```bash

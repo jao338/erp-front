@@ -100,13 +100,21 @@ export default defineConfig((ctx) => {
           { server: false },
         ],
       ],
+
+      extendViteConf(viteConf) {
+        viteConf.server = {
+          ...viteConf.server,
+          allowedHosts: true,
+        };
+      },
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
     devServer: {
       port: 9000,
       host: '0.0.0.0',
-      open: false
+      open: false,
+      allowedHosts: true,
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework

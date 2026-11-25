@@ -104,7 +104,7 @@ export default defineConfig((ctx) => {
       extendViteConf(viteConf) {
         viteConf.server = {
           ...viteConf.server,
-          allowedHosts: true,
+          allowedHosts: ['localhost', '127.0.0.1'],
         };
       },
     },
@@ -114,7 +114,7 @@ export default defineConfig((ctx) => {
       port: 9000,
       host: '0.0.0.0',
       open: false,
-      allowedHosts: true,
+      allowedHosts: ['localhost', '127.0.0.1'],
     },
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#framework

@@ -19,14 +19,14 @@ services:
       dockerfile: Dockerfile.cypress
     depends_on:
       - frontend
+    network_mode: host
     working_dir: /e2e
     volumes:
       - .:/e2e
       - /e2e/node_modules
     environment:
-      CYPRESS_baseUrl: http://frontend:9000
-      CYPRESS_CY_URL: http://frontend:9000
+      CYPRESS_baseUrl: http://localhost:9000
+      CYPRESS_CY_URL: http://localhost:9000
       NODE_PATH: /e2e
     command: >
       cypress run
-      --spec cypress/e2e/suppliers/suppliers.cy.ts

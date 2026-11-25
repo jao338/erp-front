@@ -4,7 +4,7 @@
     "supplier-email": "fornecedor.e2e@example.com",
     "supplier-phone": "11987654321",
     "supplier-type": "{downArrow}{enter}",
-    "supplier-cnpj": "04252011000110"
+    "supplier-cnpj": "09101011000132"
   },
   "update": {
     "supplier-name": "Fornecedor E2E Editado",

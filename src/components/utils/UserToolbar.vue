@@ -61,50 +61,6 @@
           />
         </div>
       </div>
-
-      <div class="column q-pa-sm lt-md">
-        <div class="row items-center q-pb-sm">
-          <div class="col">
-            <div class="text-subtitle1 q-mb-xs">{{ t('language') }}</div>
-            <InputSelect
-              v-model="currentLang"
-              :options="languages"
-              :label="t('language')"
-              class="full-width"
-            />
-          </div>
-        </div>
-
-        <q-separator class="q-my-sm" />
-
-        <div class="row items-center q-pb-sm">
-          <div class="col">
-            <div class="text-subtitle1 q-mb-xs">{{ t('configuration', 2) }}</div>
-            <q-toggle
-              style="width: max-content"
-              :model-value="darkMode"
-              :label="t('darkMode')"
-              @click="useSystemStore.toggleDarkMode"
-            />
-          </div>
-        </div>
-
-        <q-separator class="q-my-sm" />
-
-        <div class="row items-center q-pt-sm">
-          <div class="col flex-end">
-            <div class="text-subtitle1 q-mb-xs">{{ user?.nome }}</div>
-            <q-btn
-              data-cy="btn-logout"
-              color="negative"
-              :label="t('logout')"
-              push
-              size="sm"
-              @click="logout"
-            />
-          </div>
-        </div>
-      </div>
     </q-menu>
   </q-btn>
 </template>

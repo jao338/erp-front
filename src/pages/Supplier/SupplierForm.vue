@@ -74,6 +74,7 @@
         :requestErrors="{ errors: errors, field: 'cnpj' }"
         :mask="Mask.Cnpj"
         unmasked-value
+        v-if="form.tipo !== PersonType.Individual"
       />
 
       <q-card-actions class="col-12 justify-end q-mt-lg">

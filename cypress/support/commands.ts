@@ -24,10 +24,8 @@ Cypress.Commands.add('logout', () => {
   cy.selectByAttribute('btn-user').click();
   cy.selectByAttribute('btn-logout').click();
 
-  cy.waitResponse('logout', 200);
+  cy.waitResponse('logout', 204);
   cy.url().should('eq', `${Cypress.env('CY_URL')}/login`);
-
-  cy.exec('node tests.js clear');
 
   Cypress.session.clearAllSavedSessions();
 });

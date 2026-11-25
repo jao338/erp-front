@@ -2,7 +2,12 @@ import { defineConfig } from 'cypress';
 
 import dayjs from 'dayjs';
 import fs from 'fs';
+import dotenv from 'dotenv';
 import path from 'path';
+
+dotenv.config({
+  path: path.resolve(__dirname, '.env.local'),
+});
 
 export default defineConfig({
   watchForFileChanges: false,
@@ -78,9 +83,9 @@ export default defineConfig({
       return config;
     },
     env: {
-      CY_USER: "admin@teste.com",
-      CY_PASSWORD: "Senha_nada_segura123",
-      CY_URL: "http://localhost:9000/",
+      CY_USER: process.env.CY_USER,
+      CY_PASSWORD: process.env.CY_PASSWORD,
+      CY_URL: process.env.CY_URL,
     },
   },
 });

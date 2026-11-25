@@ -1,5 +1,5 @@
 <template>
-  <CardGeneric :label="$t('purchase', 2)">
+  <CardGeneric :label="$t('sale', 2)">
       <q-form
         ref="formRef"
         @submit.prevent="searchData()"
@@ -13,7 +13,7 @@
           />
 
           <InputDate
-            v-model="form.criado_em"
+            v-model="form.criado_em"|
             :label="t('createdAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />

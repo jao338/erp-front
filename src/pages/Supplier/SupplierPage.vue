@@ -263,12 +263,10 @@ async function edit(uuid_supplier: string): Promise<void> {
 function remove(uuid_supplier: string): void {
   confirmDelete().onOk(() => {
     void (async () => {
-      toggleLoading(loadingData);
       try {
         await destroy(uuid_supplier);
       } finally {
         await fetchData()
-        toggleLoading(loadingData);
       }
     })();
   });

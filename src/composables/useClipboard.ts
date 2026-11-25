@@ -8,9 +8,9 @@ export function useClipboard() {
   async function copyToClipboard(value: string): Promise<void> {
     try {
       await navigator.clipboard.writeText(value)
-      successMessage(t('textoCopiado'))
+      successMessage(t('textCopied'))
     } catch {
-      errorMessage(t('erroAoCopiarTexto'))
+      errorMessage(t('copyError'))
     }
   }
 

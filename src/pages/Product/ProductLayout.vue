@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-lg">
     <div class="row justify-between items-center">
-      <TitleH4 :title="$t('produto')" :caption="$t('produtoCaption')" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"/>
+      <TitleH4 :title="$t('product')" :caption="$t('productCaption')" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"/>
       <div class="row col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div class="full-width flex-end">
           <Breadcrumb v-if="!isMobile"/>
@@ -12,8 +12,8 @@
           class="text-capitalize"
           color="primary"
           icon="add"
-          :label="$t('adicionar')"
-          :aria-label="$t('adicionar')"
+          :label="$t('add')"
+          :aria-label="$t('add')"
           :to="{ name: 'product-add' }"
           data-cy="btn-add"
           :size="formatSizes('button')"
@@ -49,7 +49,7 @@ const isMobile = computed<boolean>(() => $q.platform.is.mobile)
 
 useMeta(() => {
   return {
-    title: t('produto'),
+    title: t('product'),
   };
 });
 

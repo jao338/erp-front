@@ -4,8 +4,8 @@ Cypress.Commands.add('login', (username, password) => {
   cy.session([username, password], () => {
     cy.visit('/login');
 
-    cy.selectByAttribute('text-cad_e_mail').type(username);
-    cy.selectByAttribute('text-cad_senha').type(password);
+    cy.selectByAttribute('text-email').type(username);
+    cy.selectByAttribute('text-password').type(password);
 
     cy.selectByAttribute('btn-login').click();
 
@@ -24,10 +24,8 @@ Cypress.Commands.add('logout', () => {
   cy.selectByAttribute('btn-user').click();
   cy.selectByAttribute('btn-logout').click();
 
-  cy.waitResponse('logout', 200);
+  cy.waitResponse('logout', 204);
   cy.url().should('eq', `${Cypress.env('CY_URL')}/login`);
-
-  cy.exec('node tests.js clear');
 
   Cypress.session.clearAllSavedSessions();
 });
@@ -121,3 +119,12 @@ Cypress.Commands.add('clickOnRow', (value: string) => {
     .should('be.visible')
     .click();
 });
+
+Cypress.Commands.add(
+  'fillForm',
+  (data: Record<string, string>) => {
+    Object.entries(data).forEach(([field, value]) => {
+      cy.selectByAttribute(field).type(value);
+    });
+  },
+);

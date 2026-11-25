@@ -30,7 +30,7 @@
               <InputPassword
                 data-cy="text-password"
                 v-model="form.password"
-                :label="$t('senha')"
+                :label="$t('password')"
                 :rules="[validateRequiredField]"
               />
 
@@ -56,8 +56,8 @@
               </q-card-actions>
 
               <q-card-actions class="flex justify-center q-pa-none">
-                <RouterLink class="no-decoration text-primary text-caption" :to="{ name: 'first-access' }">{{ t('primeiroAcesso') }}</RouterLink>
-<!--                <RouterLink :to="{ name: 'forgot-pass' }">{{ t('primeiroAcesso') }}</RouterLink>-->
+                <RouterLink class="no-decoration text-primary text-caption" :to="{ name: 'first-access' }">{{ t('firstAccess') }}</RouterLink>
+<!--                <RouterLink :to="{ name: 'forgot-pass' }">{{ t('firstAccess') }}</RouterLink>-->
               </q-card-actions>
 
             </q-form>
@@ -103,7 +103,7 @@ const form         = ref<LoginBody>({
 async function login(): Promise<void> {
   toggleLoading(loadingLogin);
   try {
-    await requestLogin(form.value, t('loginFeitoSucesso'));
+    await requestLogin(form.value, t('loginSuccess'));
 
     void router.push({ name: 'home' });
 

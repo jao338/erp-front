@@ -7,8 +7,8 @@ export default function useDialog() {
 
   function confirmDelete(): DialogChainObject {
     return $q.dialog({
-      title: t('atencao'),
-      message: t('confirmarExclusao'),
+      title: t('attention'),
+      message: t('confirmDelete'),
       cancel: true,
       persistent: true,
     });

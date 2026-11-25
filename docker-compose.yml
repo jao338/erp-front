@@ -1,8 +1,6 @@
-version: "3.9"
-
 services:
-  front:
-    container_name: quasar-front
+  frontend:
+    container_name: frontend
     build:
       context: .
       dockerfile: Dockerfile
@@ -14,3 +12,21 @@ services:
     environment:
       - HOST=0.0.0.0
     command: npm run dev
+
+  frontend-e2e-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.cypress
+    depends_on:
+      - frontend
+    network_mode: host
+    working_dir: /e2e
+    volumes:
+      - .:/e2e
+      - /e2e/node_modules
+    environment:
+      CYPRESS_baseUrl: http://localhost:9000
+      CYPRESS_CY_URL: http://localhost:9000
+      NODE_PATH: /e2e
+    command: >
+      cypress run

@@ -38,6 +38,14 @@ A aplicação estará disponível em:
 http://localhost:9000
 ```
 
+### Executar os testes E2E
+
+Com o serviço `frontend` em execução, rode os testes E2E com o comando:
+
+```bash
+docker compose run --rm frontend-e2e-tests
+```
+
 ### Parar o projeto
 
 ```bash

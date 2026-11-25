@@ -4,7 +4,7 @@
       <q-card-section>
         <div class="row justify-between items-center">
           <div class="text-h6">
-            {{ $t('pesquisaAvancada') }} - {{ $t('produto', 2) }}
+            {{ $t('advancedSearch') }} - {{ $t('product', 2) }}
           </div>
           <ButtonGeneric icon="close" flat round dense @click="closeModal" />
         </div>
@@ -19,25 +19,25 @@
         >
           <InputText
             v-model="form.nome"
-            :label="t('nome')"
+            :label="t('name')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputText
             v-model="form.quantidade"
-            :label="t('quantidade')"
+            :label="t('quantity')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputDate
             v-model="form.criado_em"
-            :label="t('criadoEm')"
+            :label="t('createdAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
           <InputDate
             v-model="form.atualizado_em"
-            :label="t('atualizadoEm')"
+            :label="t('updatedAt')"
             class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xs-12"
           />
 
@@ -48,11 +48,11 @@
               color="primary"
               flat
               class="button-rounded"
-              :title="$t('limparFiltros')"
+              :title="$t('clearFilters')"
             />
             <ButtonGeneric
               :loading="loadingData"
-              :label="$t('pesquisar')"
+              :label="$t('search')"
               color="primary"
               icon="search"
               class="button-rounded"
@@ -129,14 +129,14 @@ const columns: QTableColumn[] = [
   {
     name: 'nome',
     field: 'nome',
-    label: t('nome'),
+    label: t('name'),
     sortable: false,
     align: 'left',
   },
   {
     name: 'custo_medio',
     field: 'custo_medio',
-    label: t('custoMedio'),
+    label: t('averageCost'),
     sortable: false,
     align: 'left',
     format: val => 'R$ ' + val
@@ -144,7 +144,7 @@ const columns: QTableColumn[] = [
   {
     name: 'preco_venda',
     field: 'preco_venda',
-    label: t('precoVenda'),
+    label: t('salePrice'),
     sortable: false,
     align: 'left',
     format: val => 'R$ ' + val
@@ -152,14 +152,14 @@ const columns: QTableColumn[] = [
   {
     name: 'quantidade',
     field: 'quantidade',
-    label: t('quantidade'),
+    label: t('quantity'),
     sortable: false,
     align: 'left',
   },
   {
     name: 'criado_em',
     field: 'criado_em',
-    label: t('criadoEm'),
+    label: t('createdAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -167,7 +167,7 @@ const columns: QTableColumn[] = [
   {
     name: 'atualizado_em',
     field: 'atualizado_em',
-    label: t('atualizadoEm'),
+    label: t('updatedAt'),
     sortable: false,
     align: 'left',
     format: val => formatDate(val)
@@ -176,7 +176,7 @@ const columns: QTableColumn[] = [
 
 const emits = defineEmits(['emitValue']);
 
-async function searchData(props: any = {}): Promise<void> {
+async function searchData(props: { pagination?: Pagination } = {}): Promise<void> {
   setPagination(
     pagination.value,
     props.pagination?.page ?? 1,

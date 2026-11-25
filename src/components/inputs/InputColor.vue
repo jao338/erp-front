@@ -1,7 +1,7 @@
 <template>
   <q-input
     :model-value="props.modelValue"
-    :label="t('escolhaUmaColor')"
+    :label="t('chooseColor')"
     :bg-color="$q.dark.isActive ? 'grey-10' : 'grey-2'"
     class="input-rounded"
     outlined

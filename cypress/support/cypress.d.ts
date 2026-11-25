@@ -61,6 +61,10 @@ declare global {
     interface Chainable {
       clickOnRow(value: string): Chainable<Element>;
     }
+
+    interface Chainable {
+      fillForm(data: Record<string, string>): Chainable<Element>;
+    }
   }
 }
 
